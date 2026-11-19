@@ -10,45 +10,45 @@
 
 window.WORKS = [
   {
-    title: "연세더바로병원 대표원장 인터뷰",
+    title: "박영목 연세더바로병원 대표원장 인터뷰",
     category: "Interview",
     year: "2026",
     role: "Edit / Design",
-    url: "https://www.youtube.com/watch?v=XQSDnILtYVM"
+    url: "https://www.youtube.com/watch?v=9udzdGiaSx8"
   },
   {
-    title: "연세더바로병원 대표원장 인터뷰",
+    title: "대한무에타이협회 이우찬 부회장 단독 인터뷰",
     category: "Interview",
     year: "2026",
     role: "Edit / Design",
-    url: "https://www.youtube.com/watch?v=XQSDnILtYVM"
+    url: "https://www.youtube.com/watch?v=bomG4oWX7Jg"
   },
   {
-    title: "연세더바로병원 대표원장 인터뷰",
+    title: "호텔 더 디자이너스 리즈 강남 프리미어 김대유 총지배인 인터뷰",
     category: "Interview",
     year: "2026",
     role: "Edit / Design",
-    url: "https://www.youtube.com/watch?v=XQSDnILtYVM"
+    url: "https://www.youtube.com/watch?v=u_TtfMgkE1A"
   },
   {
-    title: "연세더바로병원 대표원장 인터뷰",
+    title: "인도네시아 K-POP 인플루언서 다니엘 헤르만시야 단독 인터뷰",
     category: "Interview",
     year: "2026",
     role: "Edit / Design",
-    url: "https://www.youtube.com/watch?v=XQSDnILtYVM"
+    url: "https://www.youtube.com/watch?v=ebfg6C140b4"
   },
   {
-    title: "연세더바로병원 대표원장 인터뷰",
+    title: "대한무에타이협회장 최광진 단독 인터뷰",
     category: "Interview",
     year: "2026",
     role: "Edit / Design",
-    url: "https://www.youtube.com/watch?v=XQSDnILtYVM"
+    url: "https://www.youtube.com/watch?v=dMkGr2oI5hc"
   },
   {
-    title: "연세더바로병원 대표원장 인터뷰",
-    category: "Interview",
+    title: "빙빙이와 효밍이의 히로시마 3박4일 여행",
+    category: "Vlog",
     year: "2026",
     role: "Edit / Design",
-    url: "https://www.youtube.com/watch?v=XQSDnILtYVM"
+    url: "https://youtu.be/z6cYzkY08_4"
   }
 ];
