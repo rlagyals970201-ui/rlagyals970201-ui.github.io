@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HYOMIN KIM — Video Editor &amp; Designer</title>
+  <meta name="description" content="영상편집자 · 디자이너 김효민. 편집하고, 디자인하고, 직접 찍습니다.">
+  <meta property="og:title" content="HYOMIN KIM — Video Editor &amp; Designer">
+  <meta property="og:description" content="영상편집자 · 디자이너 김효민">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/style.css?v=20261119">
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="ff" viewBox="0 0 20 12">
+      <path d="M0 0L9 6L0 12ZM10 0L19 6L10 12Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="hm" viewBox="0 0 48 48">
+      <path d="M7 9V39M7 24H21M21 39V9L31 26L41 9V39" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="bevel"/>
+    </symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="#top" class="header__logo"><svg class="mark"><use href="#hm"/></svg>HYOMIN KIM</a>
+    <nav class="header__nav" aria-label="주요 메뉴">
+      <a href="#works">Works</a>
+      <a href="#about">About</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header__tc" aria-hidden="true"><i class="rec"></i><span id="tc">00:00:00:00</span></div>
+  </header>
+
+  <main>
+
+    <!-- HERO (light) -->
+    <section class="hero" id="top" data-theme="light">
+      <div class="hero__meta">
+        <span>SEQ 01 — Index</span>
+        <span>Video Editor / Designer / Filmmaker</span>
+        <span>3+ Years / 150+ Projects</span>
+      </div>
+
+      <div class="hero__mid">
+        <p class="hero__role"><svg class="mark mark--red"><use href="#hm"/></svg>Cut / Design / Shoot</p>
+        <p class="hero__lede">
+          자르고, 그리고, 찍습니다.<br>
+          보기 좋은 화면보다<br class="br-m">
+          오래 남는 장면을 만듭니다.
+        </p>
+      </div>
+
+      <div class="hero__name">
+        <h1 aria-label="HYOMIN KIM">
+          <span class="fitbox only-d" aria-hidden="true"><span data-fit>HYOMIN KIM</span></span>
+          <span class="fitbox only-m" aria-hidden="true"><span data-fit id="fitHyomin">HYOMIN</span></span>
+          <span class="fitbox only-m" aria-hidden="true"><span data-fit-same="#fitHyomin">KIM</span></span>
+        </h1>
+        <p class="hero__script" aria-hidden="true">
+          Edit &amp; Design
+          <svg class="hero__swash" viewBox="0 0 400 40" preserveAspectRatio="none">
+            <path d="M4 26 C 70 10, 140 34, 210 20 S 330 8, 396 22" />
+          </svg>
+        </p>
+      </div>
+
+      <!-- 편집 타임라인: 스크롤에 따라 플레이헤드가 움직임 -->
+      <div class="timeline" aria-hidden="true">
+        <div class="timeline__ruler" id="ruler"></div>
+        <div class="timeline__tracks">
+          <div class="trk"><b>V1</b><i style="left:0;width:38%"></i><i style="left:39%;width:24%"></i><i style="left:64%;width:36%"></i></div>
+          <div class="trk trk--a"><b>A1</b><i style="left:0;width:63%"></i><i style="left:64%;width:30%"></i></div>
+        </div>
+        <span class="timeline__head" id="playhead"></span>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true" data-theme="red">
+      <div class="marquee__track">
+        <div class="marquee__group">
+          <span class="pill">Video Editing</span><svg class="ff" aria-hidden="true"><use href="#ff"/></svg>
+          <span class="pill">Motion</span><svg class="ff" aria-hidden="true"><use href="#ff"/></svg>
+          <span class="pill">Design</span><svg class="ff" aria-hidden="true"><use href="#ff"/></svg>
+          <span class="pill">Card News</span><svg class="ff" aria-hidden="true"><use href="#ff"/></svg>
+          <span class="pill">Filming</span><svg class="ff" aria-hidden="true"><use href="#ff"/></svg>
+          <span class="pill">Interview</span><svg class="ff" aria-hidden="true"><use href="#ff"/></svg>
+          <span class="pill">SNS Content</span><svg class="ff" aria-hidden="true"><use href="#ff"/></svg>
+          <span class="pill">Thumbnail</span><svg class="ff" aria-hidden="true"><use href="#ff"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="sec about" id="about">
+      <div class="label"><span class="label__no">01</span><span>About</span><span class="label__tc">IN 00:00:12:04</span></div>
+
+      <div class="about__grid">
+        <figure class="about__photo" data-reveal>
+          <!-- 프로필 사진을 assets/img/profile.jpg 로 넣으면 자동으로 보입니다 -->
+          <img src="assets/img/profile.jpg" alt="김효민 프로필 사진" onerror="this.parentElement.classList.add('is-empty')">
+          <span class="about__mono"><svg class="mark"><use href="#hm"/></svg></span>
+          <figcaption><span>CAM A</span><span>Kim Hyomin, 1997</span></figcaption>
+        </figure>
+
+        <div class="about__text">
+          <p class="eyebrow">Hey, I'm Hyomin</p>
+          <h2 class="about__statement" data-reveal>
+            한 컷을 고르기 전에,<br>
+            그 사람을 먼저 봅니다.
+          </h2>
+          <p class="about__body" data-reveal>
+            영상 편집과 디자인, 촬영을 오가며 일합니다. 카메라를 들고 여러 사람을 직접 만나 찍어 온 시간이 쌓이면서,
+            지금은 화면 너머의 사람이 무엇을 말하고 싶은지부터 묻게 됐습니다.
+            떠오른 아이디어는 먼저 꺼내 놓고, 의견이 갈리면 모두가 납득할 때까지 맞춰 갑니다.
+          </p>
+
+          <dl class="about__spec">
+            <div><dt>Name</dt><dd>김효민 <span>Kim Hyomin</span></dd></div>
+            <div><dt>Born</dt><dd>1997. 02. 01</dd></div>
+            <div><dt>Role</dt><dd>Video Editor / Designer / Filmmaker</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="facts">
+        <div class="fact" data-reveal><span class="fact__k">Years of Experience</span><strong>03+</strong><em>실무 경력</em></div>
+        <div class="fact" data-reveal><span class="fact__k">Completed Projects</span><strong class="is-red">150+</strong><em>누적 제작 편수</em></div>
+        <div class="fact" data-reveal><span class="fact__k">Filming to Final Cut</span><strong>On Set</strong><em>촬영부터 후반 작업까지 원스톱</em></div>
+      </div>
+    </section>
+
+    <!-- WORKS -->
+    <section class="sec works" id="works">
+      <div class="label"><span class="label__no">02</span><span>Selected Works</span><span class="label__tc">IN 00:00:42:12</span></div>
+      <div class="works__head">
+        <h2 class="works__title">Selected<br>Works</h2>
+        <p class="works__note">직접 편집하고 만든 영상들입니다.<br>옆으로 넘겨 보고, 누르면 바로 재생됩니다.</p>
+      </div>
+
+      <div class="slider">
+        <ul class="slider__track" id="track"></ul>
+      </div>
+      <div class="slider__ui">
+        <span class="slider__count"><b id="cur">01</b> / <span id="total">00</span></span>
+        <div class="slider__bar"><i id="bar"></i></div>
+        <div class="slider__btns">
+          <button type="button" class="sbtn" id="prev" aria-label="이전 영상">←</button>
+          <button type="button" class="sbtn" id="next" aria-label="다음 영상">→</button>
+        </div>
+      </div>
+      <div class="cursor" id="cursor" aria-hidden="true">Play</div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section class="sec cap" id="capabilities" data-theme="light">
+      <div class="label"><span class="label__no">03</span><span>Capabilities</span><span class="label__tc">IN 00:01:08:20</span></div>
+      <h2 class="cap__title">What I Do</h2>
+
+      <ol class="cap__list">
+        <li class="cap__item" data-reveal>
+          <span class="cap__trk">01</span>
+          <h3>Video Editing</h3>
+          <p>유튜브 예능, 인터뷰, 브랜드 필름처럼 장르마다 맞는 리듬이 다릅니다. 그 리듬에 맞춰 컷을 자르고, 이야기가 끝까지 붙잡히도록 구성합니다.</p>
+          <ul class="tags"><li>Cut &amp; Pacing</li><li>Storytelling</li><li>Interview</li><li>Brand Film</li></ul>
+        </li>
+        <li class="cap__item" data-reveal>
+          <span class="cap__trk">02</span>
+          <h3>Motion &amp; Graphics</h3>
+          <p>인포그래픽과 키네틱 타이포그래피로 정보를 한눈에 읽히게 만들고, 장면 사이를 트랜지션으로 자연스럽게 잇습니다.</p>
+          <ul class="tags"><li>Infographic</li><li>Kinetic Type</li><li>Transition</li></ul>
+        </li>
+        <li class="cap__item" data-reveal>
+          <span class="cap__trk">03</span>
+          <h3>Color &amp; Sound</h3>
+          <p>영상의 무드는 색과 소리에서 결정됩니다. 시네마틱한 색보정에 효과음과 사운드 믹싱을 더해 몰입감을 끌어올립니다.</p>
+          <ul class="tags"><li>Color Grading</li><li>SFX</li><li>Sound Mixing</li></ul>
+        </li>
+        <li class="cap__item" data-reveal>
+          <span class="cap__trk">04</span>
+          <h3>Thumbnail &amp; Design</h3>
+          <p>눌러 보고 싶어지는 썸네일, 읽기 편하면서도 멋있는 자막과 타이틀을 만듭니다. 카드뉴스, 포스터, 브로슈어 같은 인쇄물도 직접 디자인합니다.</p>
+          <ul class="tags"><li>Thumbnail</li><li>Title</li><li>Card News</li><li>Poster</li><li>Brochure</li></ul>
+        </li>
+        <li class="cap__item" data-reveal>
+          <span class="cap__trk">05</span>
+          <h3>On-Set Filming</h3>
+          <p>편집할 장면을 미리 그리면서 찍습니다. 현장에서 구도를 잡고 조명을 세팅하는 것까지 직접 합니다.</p>
+          <ul class="tags"><li>Composition</li><li>Lighting</li><li>Interview</li><li>B-roll</li></ul>
+        </li>
+        <li class="cap__item" data-reveal>
+          <span class="cap__trk">06</span>
+          <h3>Short-form &amp; Channel</h3>
+          <p>릴스와 쇼츠의 흐름을 살피고, 처음 3초 안에 붙잡는 구성을 고민합니다. SNS 채널을 직접 기획하고 운영해 봤습니다.</p>
+          <ul class="tags tags--links">
+            <li><a href="https://www.instagram.com/mediadaily2026/" target="_blank" rel="noopener">@mediadaily2026 ↗</a></li>
+            <li><a href="https://www.instagram.com/kmta.korea/" target="_blank" rel="noopener">@kmta.korea ↗</a></li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="tools">
+        <div class="tools__head">
+          <h3 class="tools__title">Tools</h3>
+          <p class="tools__note">어도비 툴을 능숙하게 다룹니다.<br>새로운 툴과 기술도 주저하지 않고 배워서 바로 씁니다.</p>
+        </div>
+        <ul class="tools__grid">
+          <li class="tool" data-reveal><span class="tool__ab">Pr</span><span class="tool__name">Premiere Pro</span><span class="tool__use">Edit</span></li>
+          <li class="tool" data-reveal><span class="tool__ab">Ae</span><span class="tool__name">After Effects</span><span class="tool__use">Motion</span></li>
+          <li class="tool" data-reveal><span class="tool__ab">Ps</span><span class="tool__name">Photoshop</span><span class="tool__use">Image</span></li>
+          <li class="tool" data-reveal><span class="tool__ab">Ai</span><span class="tool__name">Illustrator</span><span class="tool__use">Graphic</span></li>
+          <li class="tool tool--more" data-reveal><span class="tool__ab">+</span><span class="tool__name">And Next</span><span class="tool__use">Always learning</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- HOW I WORK -->
+    <section class="sec how">
+      <div class="label"><span class="label__no">04</span><span>How I Work</span><span class="label__tc">IN 00:01:36:02</span></div>
+      <h2 class="how__title">How<br>I Work</h2>
+
+      <div class="how__grid">
+        <article class="how__item" data-reveal>
+          <span class="how__no">01</span>
+          <h3>Hook First</h3><small>첫 3초</small>
+          <p>처음 3초 안에 시선을 붙잡는 구조부터 설계합니다. 끝까지 보게 만드는 건 그다음 일입니다.</p>
+        </article>
+        <article class="how__item" data-reveal>
+          <span class="how__no">02</span>
+          <h3>Rhythm &amp; Pace</h3><small>리듬과 호흡</small>
+          <p>필요 없는 여백은 덜어내고, 컷과 사운드가 같은 호흡으로 흘러가게 만듭니다.</p>
+        </article>
+        <article class="how__item" data-reveal>
+          <span class="how__no">03</span>
+          <h3>Detail &amp; DI</h3><small>디테일</small>
+          <p>색보정부터 자막 위치 1px까지, 마지막 디테일에서 타협하지 않습니다.</p>
+        </article>
+        <article class="how__item" data-reveal>
+          <span class="how__no">04</span>
+          <h3>Fast Feedback</h3><small>빠른 피드백</small>
+          <p>소통은 명확하게, 피드백 반영은 빠르게 합니다. 약속한 납기는 지킵니다.</p>
+        </article>
+        <article class="how__item" data-reveal>
+          <span class="how__no">05</span>
+          <h3>Speak &amp; Align</h3><small>의견 피력 · 조율</small>
+          <p>좋다고 생각하는 방향은 이유와 함께 말하고, 의견이 갈리면 모두가 납득할 지점까지 맞춰 갑니다.</p>
+        </article>
+        <article class="how__item" data-reveal>
+          <span class="how__no">06</span>
+          <h3>People On Set</h3><small>사람을 만나는 일</small>
+          <p>다양한 사람을 직접 찍으며 만나 왔습니다. 카메라 앞의 긴장을 푸는 법은 현장에서 배웠습니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="sec contact" id="contact" data-theme="red">
+      <div class="label"><span class="label__no">05</span><span>Contact</span><span class="label__tc">OUT 00:02:59:23</span></div>
+      <h2 class="contact__title">
+        <span class="fitbox"><span data-fit>LET'S MAKE</span></span>
+        <span class="contact__line"><em>something</em><span>WORTH</span></span>
+        <span class="fitbox"><span data-fit>WATCHING</span></span>
+      </h2>
+
+      <div class="contact__row">
+        <!-- 실제 이메일 주소로 바꿔 주세요 -->
+        <a class="contact__mail" href="mailto:hello@example.com">hello@example.com <span aria-hidden="true">→</span></a>
+        <ul class="contact__links">
+          <li><a href="#" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__row">
+      <span>© 2026 Kim Hyomin</span>
+      <span>End of Sequence</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+    <div class="fitbox footer__name"><span data-fit>HYOMIN</span></div>
+  </footer>
+
+  <!-- FLOATING TOP -->
+  <a href="#top" class="totop" id="totop" aria-label="맨 위로">
+    <span class="totop__tc" id="totopTc">00:00</span>
+    <span class="totop__label">Top</span>
+    <span class="totop__arrow" aria-hidden="true"></span>
+    <span class="totop__bar" aria-hidden="true"><i id="totopBar"></i></span>
+  </a>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__bg" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal__head">
+        <span class="modal__no" id="modalNo">01</span>
+        <h3 class="modal__title" id="modalTitle"></h3>
+        <button type="button" class="modal__close" data-close aria-label="닫기">Close ✕</button>
+      </div>
+      <div class="modal__frame" id="modalFrame"></div>
+      <div class="modal__foot">
+        <span id="modalMeta"></span>
+        <div class="modal__nav">
+          <button type="button" id="mPrev">← Prev</button>
+          <button type="button" id="mNext">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/works.js?v=20261119"></script>
+  <script src="js/main.js?v=20261119"></script>
+</body>
+</html>

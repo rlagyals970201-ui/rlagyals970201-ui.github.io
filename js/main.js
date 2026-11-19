@@ -1,0 +1,331 @@
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const esc = (s = '') => String(s).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+  const pad = (n, l = 2) => String(n).padStart(l, '0');
+  const FPS = 24;
+  const tc = (sec) => {
+    const f = Math.floor(sec * FPS);
+    return [Math.floor(f / (3600 * FPS)), Math.floor(f / (60 * FPS)) % 60, Math.floor(f / FPS) % 60, f % FPS].map((n) => pad(n)).join(':');
+  };
+
+  /* ---------- 큰 타이포: 컨테이너 너비에 꽉 맞추기 ---------- */
+  const fits = $$('[data-fit]');
+  function fitText() {
+    fits.forEach((el) => {
+      el.style.fontSize = '100px';
+      const box = el.parentElement.clientWidth;
+      const w = el.getBoundingClientRect().width;
+      if (w) el.style.fontSize = (100 * box / w) * 0.998 + 'px';
+    });
+    $$('[data-fit-same]').forEach((el) => {
+      const ref = $(el.dataset.fitSame);
+      if (ref) el.parentElement.style.fontSize = ref.style.fontSize;
+    });
+  }
+
+  /* ---------- 롤링 띠: 끊김 없는 무한 반복 ----------
+     문구 묶음을 화면 너비 이상이 될 때까지 채워 한 그룹을 만들고, 그룹을 한 번 더 이어 붙인 뒤
+     정확히 그룹 하나 너비(px)만큼 이동 → 시작 화면과 끝 화면이 같아 이음매가 보이지 않음 */
+  const mqTrack = $('.marquee__track');
+  const mqBase = mqTrack ? $('.marquee__group', mqTrack).innerHTML : '';
+  const MQ_SPEED = 90; // px / 초
+  function buildMarquee() {
+    if (!mqTrack) return;
+    mqTrack.style.animation = 'none';
+    mqTrack.innerHTML = `<div class="marquee__group">${mqBase}</div>`;
+    const g = mqTrack.firstElementChild;
+    let guard = 0;
+    while (g.getBoundingClientRect().width < window.innerWidth && guard++ < 30) g.innerHTML += mqBase;
+    mqTrack.appendChild(g.cloneNode(true));
+    const w = g.getBoundingClientRect().width;
+    mqTrack.style.setProperty('--marquee-shift', w + 'px');
+    mqTrack.style.setProperty('--marquee-dur', (w / MQ_SPEED).toFixed(2) + 's');
+    void mqTrack.offsetWidth;
+    mqTrack.style.animation = '';
+  }
+
+  /* ---------- 유튜브 ---------- */
+  function ytId(u) {
+    if (!u) return '';
+    const m = String(u).match(/(?:youtu\.be\/|[?&]v=|shorts\/|embed\/|live\/)([\w-]{11})/);
+    if (m) return m[1];
+    return /^[\w-]{11}$/.test(u.trim()) ? u.trim() : '';
+  }
+  const works = (window.WORKS || []).map((w) => ({
+    ...w,
+    id: ytId(w.url),
+    short: w.format === 'short' || /\/shorts\//.test(w.url || ''),
+  }));
+
+  /* ---------- 작업물: 가로 슬라이드 ---------- */
+  const track = $('#track');
+  $('#total').textContent = pad(works.length);
+  track.innerHTML = works.map((w, i) => {
+    const no = pad(i + 1);
+    const thumb = w.id
+      ? `<img src="https://i.ytimg.com/vi/${w.id}/${w.short ? 'oardefault' : 'maxresdefault'}.jpg" alt="" loading="lazy" draggable="false"
+          onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${w.id}/hqdefault.jpg'">`
+      : `<span class="work__ph">${no}</span>`;
+    return `
+      <li class="work ${w.short ? 'is-short' : 'is-wide'}">
+        <button type="button" class="work__btn" data-index="${i}" aria-label="${esc(w.title)} 영상 보기">
+          <div class="work__media">
+            ${thumb}
+            <div class="hud" aria-hidden="true">
+              <span class="hud__tl"><b>V1</b>Clip ${no}</span>
+              <span class="hud__tr">${w.short ? '9:16' : '16:9'}</span>
+              <span class="hud__bl">${tc(i * 37.5 + 12.2)}</span>
+              <span class="hud__safe"></span>
+              <span class="hud__bar"><i></i></span>
+            </div>
+          </div>
+          <div class="work__meta">
+            <span class="work__no">${no}</span>
+            <h3 class="work__title">${esc(w.title)}</h3>
+            <span class="work__cat">${esc(w.category)} — ${esc(w.year)}</span>
+            ${w.role ? `<span class="work__role">${esc(w.role)}</span>` : ''}
+          </div>
+        </button>
+      </li>`;
+  }).join('');
+
+  const cards = $$('.work', track);
+  const bar = $('#bar'), cur = $('#cur'), prev = $('#prev'), next = $('#next');
+
+  // 카드 위치는 미리 계산해 두고(리사이즈 때만 갱신) 스크롤 중에는 레이아웃을 읽지 않음
+  let stops = [], maxScroll = 0;
+  function measure() {
+    const base = cards[0] ? cards[0].offsetLeft : 0;
+    maxScroll = track.scrollWidth - track.clientWidth;
+    stops = cards.map((c) => Math.min(c.offsetLeft - base, maxScroll));
+  }
+  function nearest(x) {
+    let best = 0, d = Infinity;
+    stops.forEach((s, i) => { const dd = Math.abs(s - x); if (dd < d) { d = dd; best = i; } });
+    return best;
+  }
+  function currentIndex() {
+    if (track.scrollLeft >= maxScroll - 4) return cards.length - 1;
+    return nearest(track.scrollLeft);
+  }
+
+  // 부드러운 이동 (rAF + ease-out). 이동 중에는 CSS 스냅을 꺼서 브라우저 스냅과 충돌하지 않게 함
+  let anim = 0;
+  const easeOut = (t) => 1 - Math.pow(1 - t, 4);
+  function stopAnim() { if (anim) { cancelAnimationFrame(anim); anim = 0; } }
+  function animateTo(target, duration = 650) {
+    stopAnim();
+    target = Math.max(0, Math.min(target, maxScroll));
+    const from = track.scrollLeft, dist = target - from;
+    if (Math.abs(dist) < 1) { track.classList.remove('is-free'); return; }
+    track.classList.add('is-free');
+    const t0 = performance.now();
+    const step = (now) => {
+      const t = Math.min((now - t0) / duration, 1);
+      track.scrollLeft = from + dist * easeOut(t);
+      if (t < 1) anim = requestAnimationFrame(step);
+      else { anim = 0; track.classList.remove('is-free'); }
+    };
+    anim = requestAnimationFrame(step);
+  }
+  function goTo(i) {
+    const k = Math.max(0, Math.min(i, cards.length - 1));
+    animateTo(stops[k], 700);
+  }
+
+  let rafUI = 0;
+  function updateSlider() {
+    rafUI = 0;
+    if (!cards.length) return;
+    const p = maxScroll > 0 ? track.scrollLeft / maxScroll : 1;
+    bar.style.clipPath = `inset(0 ${(100 - Math.max(p, 1 / cards.length) * 100).toFixed(2)}% 0 0)`;
+    cur.textContent = pad(currentIndex() + 1);
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= maxScroll - 2;
+  }
+  track.addEventListener('scroll', () => { if (!rafUI) rafUI = requestAnimationFrame(updateSlider); }, { passive: true });
+  prev.addEventListener('click', () => goTo(currentIndex() - 1));
+  next.addEventListener('click', () => goTo(currentIndex() + 1));
+
+  // 마우스 드래그: 손 따라 움직이고, 놓으면 속도만큼 미끄러진 뒤 가장 가까운 카드에 안착
+  let down = false, moved = false, startX = 0, startL = 0, samples = [], pending = null, rafDrag = 0;
+  track.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    stopAnim();
+    down = true; moved = false;
+    startX = e.clientX; startL = track.scrollLeft;
+    samples = [{ x: e.clientX, t: e.timeStamp }];
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (!down) return;
+    const dx = e.clientX - startX;
+    if (!moved && Math.abs(dx) > 5) {
+      moved = true;
+      track.classList.add('is-free', 'is-dragging');
+      $('#cursor').classList.remove('is-on');
+    }
+    if (!moved) return;
+    samples.push({ x: e.clientX, t: e.timeStamp });
+    if (samples.length > 6) samples.shift();
+    pending = startL - dx;
+    if (!rafDrag) rafDrag = requestAnimationFrame(() => {
+      rafDrag = 0;
+      if (pending !== null) track.scrollLeft = Math.max(0, Math.min(pending, maxScroll));
+    });
+  });
+  window.addEventListener('pointerup', (e) => {
+    if (!down) return;
+    down = false;
+    if (!moved) return;
+    track.classList.remove('is-dragging');
+    // 최근 움직임으로 속도(px/ms) 계산
+    const now = e.timeStamp;
+    const recent = samples.filter((s) => now - s.t < 120);
+    let v = 0;
+    if (recent.length > 1) {
+      const a = recent[0], b = recent[recent.length - 1];
+      v = (b.x - a.x) / Math.max(b.t - a.t, 1);
+    }
+    const projected = track.scrollLeft - v * 320;          // 관성으로 더 미끄러질 거리
+    let i = nearest(projected);
+    const here = currentIndex();
+    if (Math.abs(v) > 0.35 && i === here) i = here + (v < 0 ? 1 : -1); // 짧게 휙 넘겨도 한 장 이동
+    i = Math.max(0, Math.min(i, cards.length - 1));
+    const dist = Math.abs(stops[i] - track.scrollLeft);
+    animateTo(stops[i], Math.min(900, 420 + dist * 0.5));
+    setTimeout(() => { moved = false; }, 0);
+  });
+
+  track.addEventListener('click', (e) => {
+    const btn = e.target.closest('.work__btn');
+    if (!btn || moved) { e.preventDefault(); return; }
+    openModal(+btn.dataset.index);
+  }, true);
+
+  measure();
+  window.addEventListener('resize', () => { measure(); updateSlider(); });
+
+  // 썸네일 위 PLAY 커서
+  const cursor = $('#cursor');
+  if (matchMedia('(pointer: fine)').matches) {
+    track.addEventListener('pointermove', (e) => {
+      const on = !!e.target.closest('.work__media') && !moved && !down;
+      cursor.classList.toggle('is-on', on);
+      cursor.style.transform = `translate3d(${e.clientX + 14}px, ${e.clientY + 14}px, 0)`;
+    });
+    track.addEventListener('pointerleave', () => cursor.classList.remove('is-on'));
+  }
+
+  /* ---------- 영상 팝업 ---------- */
+  const modal = $('#modal');
+  const box = $('.modal__box', modal);
+  const frame = $('#modalFrame');
+  let current = 0, lastFocus = null;
+
+  function render(i) {
+    current = (i + works.length) % works.length;
+    const w = works[current];
+    $('#modalNo').textContent = pad(current + 1);
+    $('#modalTitle').textContent = w.title;
+    $('#modalMeta').textContent = [w.category, w.role, w.year].filter(Boolean).join('  ·  ');
+    box.classList.toggle('is-short', w.short);
+    frame.innerHTML = w.id
+      ? `<iframe src="https://www.youtube-nocookie.com/embed/${w.id}?autoplay=1&rel=0&playsinline=1"
+           title="${esc(w.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`
+      : `<div class="modal__empty">아직 연결된 영상이 없습니다.</div>`;
+  }
+  function openModal(i) {
+    lastFocus = document.activeElement;
+    render(i);
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('is-locked');
+    $('.modal__close', modal).focus({ preventScroll: true });
+  }
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('is-locked');
+    setTimeout(() => { if (!modal.classList.contains('is-open')) frame.innerHTML = ''; }, 400);
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+  }
+  $$('[data-close]', modal).forEach((el) => el.addEventListener('click', closeModal));
+  $('#mPrev').addEventListener('click', () => render(current - 1));
+  $('#mNext').addEventListener('click', () => render(current + 1));
+  document.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') render(current - 1);
+    if (e.key === 'ArrowRight') render(current + 1);
+  });
+
+  /* ---------- 타임코드 · 타임라인 플레이헤드 ----------
+     페이지 전체를 3분짜리 시퀀스로 보고, 스크롤 위치를 타임코드로 표시 */
+  const SEQ = 180; // 초
+  const tcEl = $('#tc');
+  const ruler = $('#ruler');
+  const head = $('#playhead');
+  if (ruler) {
+    ruler.innerHTML = Array.from({ length: 10 }, (_, k) => {
+      const s = (SEQ / 10) * k;
+      return `<span style="left:${k * 10}%">${pad(Math.floor(s / 60))}:${pad(Math.floor(s % 60))}</span>`;
+    }).join('');
+  }
+  const header = $('.header');
+  const totop = $('#totop'), totopBar = $('#totopBar'), totopTc = $('#totopTc'), about = $('#about');
+  const themed = $$('[data-theme]');
+  let ticking = false;
+  function onScroll() {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
+    tcEl.textContent = tc(p * SEQ);
+    if (head && ruler) head.style.transform = `translateX(${p * ruler.clientWidth}px)`;
+
+    const y = header.offsetHeight / 2;
+    let theme = '';
+    for (const s of themed) {
+      const r = s.getBoundingClientRect();
+      if (r.top <= y && r.bottom > y) { theme = s.dataset.theme; break; }
+    }
+    header.classList.toggle('is-light', theme === 'light');
+
+    // 플로팅 TOP: About 섹션을 지나면 노출
+    if (totop && about) {
+      totop.classList.toggle('is-on', about.getBoundingClientRect().bottom < window.innerHeight * 0.5);
+      totopBar.style.width = (p * 100).toFixed(1) + '%';
+      const sec = p * SEQ;
+      totopTc.textContent = pad(Math.floor(sec / 60)) + ':' + pad(Math.floor(sec % 60));
+    }
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+
+  /* ---------- 스크롤 등장 ---------- */
+  const io = 'IntersectionObserver' in window
+    ? new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
+    : null;
+  $$('[data-reveal]').forEach((el, i) => {
+    el.style.transitionDelay = (i % 3) * 0.08 + 's';
+    io ? io.observe(el) : el.classList.add('is-in');
+  });
+
+  /* ---------- 초기화 · 리사이즈 ---------- */
+  function refresh() { fitText(); buildMarquee(); onScroll(); measure(); updateSlider(); }
+  refresh();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
+  let lastW = window.innerWidth, rT;
+  window.addEventListener('resize', () => {
+    clearTimeout(rT);
+    rT = setTimeout(() => {
+      fitText(); onScroll(); updateSlider();
+      if (window.innerWidth !== lastW) { lastW = window.innerWidth; buildMarquee(); }
+    }, 100);
+  });
+})();
