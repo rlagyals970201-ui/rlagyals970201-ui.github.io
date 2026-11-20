@@ -52,3 +52,27 @@ window.WORKS = [
     url: "https://youtu.be/z6cYzkY08_4"
   }
 ];
+
+
+/* =====================================================
+   이미지 작업물 (Selected Works 의 Image 탭)
+   - 이미지 파일은 assets/img/art/ 에 넣고 img 에 경로를 적어 주세요.
+   - url 은 눌렀을 때 이동할 주소입니다(아트스테이션 등).
+   - category 를 적으면 카드에 분류가 표시됩니다(기본: Illustration).
+   ===================================================== */
+
+window.ART = [
+    { title: "Year of the Blue Dragon", img: "assets/img/art/blue-dragon.jpg", url: "https://www.artstation.com/artwork/RywNOO" },
+    { title: "Saintess", img: "assets/img/art/saintess.jpg", url: "https://www.artstation.com/artwork/OGDwOb" },
+    { title: "Illustration — Phone Wallpaper", img: "assets/img/art/phone-wallpaper-illustration.jpg", url: "https://www.artstation.com/artwork/5vvrnJ" },
+    { title: "Unknown Chinese Lady", img: "assets/img/art/unknown-chinese-lady.jpg", url: "https://www.artstation.com/artwork/5vv3Lw" },
+    { title: "Blue Moon Mafia — Group Photo", img: "assets/img/art/blue-moon-mafia.jpg", url: "https://www.artstation.com/artwork/m88Qke" },
+    { title: "RED SUN — Fighting Dog", img: "assets/img/art/red-sun-fighting-dog.jpg", url: "https://www.artstation.com/artwork/Zev2KN" },
+    { title: "RED SUN — Assassin", img: "assets/img/art/red-sun-assassin.jpg", url: "https://www.artstation.com/artwork/X1QEm3" },
+    { title: "Successful Fan", img: "assets/img/art/successful-fan.jpg", url: "https://www.artstation.com/artwork/r9GELJ" },
+    { title: "Arcane Motive", img: "assets/img/art/arcane-motive.jpg", url: "https://www.artstation.com/artwork/Pe6NE1" },
+    { title: "Gold Eagle Knight", img: "assets/img/art/gold-eagle-knight.jpg", url: "https://www.artstation.com/artwork/Kr0Vd4" },
+    { title: "Concept Design", img: "assets/img/art/concept-design.jpg", url: "https://www.artstation.com/artwork/ea10dX" },
+    { title: "Men", img: "assets/img/art/men.jpg", url: "https://www.artstation.com/artwork/R3lq9W" },
+    { title: "Chess — Pawn", img: "assets/img/art/chess-pawn.jpg", url: "https://www.artstation.com/artwork/5XQRzg" }
+];

@@ -58,10 +58,13 @@
     short: w.format === 'short' || /\/shorts\//.test(w.url || ''),
   }));
 
-  /* ---------- 작업물: 가로 슬라이드 ---------- */
+  /* ---------- 작업물: 가로 슬라이드 (Video / Image 탭) ---------- */
+  const art = (window.ART || []).filter((a) => a && a.img);
   const track = $('#track');
-  $('#total').textContent = pad(works.length);
-  track.innerHTML = works.map((w, i) => {
+  let kind = 'video';
+  let cards = [];
+
+  function videoCard(w, i) {
     const no = pad(i + 1);
     const thumb = w.id
       ? `<img src="https://i.ytimg.com/vi/${w.id}/${w.short ? 'oardefault' : 'maxresdefault'}.jpg" alt="" loading="lazy" draggable="false"
@@ -88,9 +91,53 @@
           </div>
         </button>
       </li>`;
-  }).join('');
+  }
+  function artCard(a, i) {
+    const no = pad(i + 1);
+    return `
+      <li class="work is-art">
+        <a class="work__btn" href="${esc(a.url || '#')}" target="_blank" rel="noopener" draggable="false" aria-label="${esc(a.title)} 보러 가기">
+          <div class="work__media">
+            <img src="${esc(a.img)}" alt="" loading="lazy" draggable="false">
+            <div class="hud" aria-hidden="true">
+              <span class="hud__tl"><b>G1</b>Still ${no}</span>
+              <span class="hud__tr">1:1</span>
+              <span class="hud__safe"></span>
+            </div>
+          </div>
+          <div class="work__meta">
+            <span class="work__no">${no}</span>
+            <h3 class="work__title">${esc(a.title)}</h3>
+            <span class="work__cat">${esc(a.category || 'Illustration')} ↗</span>
+          </div>
+        </a>
+      </li>`;
+  }
+  function renderTrack() {
+    const list = kind === 'video' ? works : art;
+    track.innerHTML = list.map(kind === 'video' ? videoCard : artCard).join('');
+    cards = $$('.work', track);
+    $('#total').textContent = pad(list.length);
+    const c = $('#cursor');
+    if (c) c.textContent = kind === 'video' ? 'Play' : 'View';
+  }
+  renderTrack();
+  $$('.works__tab').forEach((t) => {
+    const n = $('.works__count', t);
+    if (n) n.textContent = pad(t.dataset.set === 'video' ? works.length : art.length);
+    t.addEventListener('click', () => {
+      if (t.dataset.set === kind) return;
+      kind = t.dataset.set;
+      $$('.works__tab').forEach((x) => { x.classList.toggle('is-on', x === t); x.setAttribute('aria-selected', x === t); });
+      stopAnim();
+      renderTrack();
+      track.scrollLeft = 0;
+      measure(); updateSlider();
+      requestAnimationFrame(() => { measure(); updateSlider(); });
+      setTimeout(() => { measure(); updateSlider(); }, 300);
+    });
+  });
 
-  const cards = $$('.work', track);
   const bar = $('#bar'), cur = $('#cur'), prev = $('#prev'), next = $('#next');
 
   // 카드 위치는 미리 계산해 두고(리사이즈 때만 갱신) 스크롤 중에는 레이아웃을 읽지 않음
@@ -130,6 +177,7 @@
     anim = requestAnimationFrame(step);
   }
   function goTo(i) {
+    measure();
     const k = Math.max(0, Math.min(i, cards.length - 1));
     animateTo(stops[k], 700);
   }
@@ -200,6 +248,7 @@
   track.addEventListener('click', (e) => {
     const btn = e.target.closest('.work__btn');
     if (!btn || moved) { e.preventDefault(); return; }
+    if (btn.tagName === 'A') return;          // 이미지 카드는 링크로 이동
     openModal(+btn.dataset.index);
   }, true);
 

@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20261120d">
+  <link rel="stylesheet" href="css/style.css?v=20261120e">
 </head>
 <body>
 
@@ -35,7 +35,6 @@
       <a href="#about">About</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#experience">Experience</a>
-      <a href="#mywork">My Work</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header__tc" aria-hidden="true"><i class="rec"></i><span id="tc">00:00:00:00</span></div>
@@ -149,7 +148,12 @@
       <div class="label"><span class="label__no">02</span><span>Selected Works</span><span class="label__tc">IN 00:00:42:12</span></div>
       <div class="works__head">
         <h2 class="works__title">Selected<br>Works</h2>
-        <p class="works__note">직접 편집하고 만든 영상들입니다.<br>옆으로 넘겨 보고, 누르면 바로 재생됩니다.</p>
+        <p class="works__note">직접 편집하고 그린 작업물들입니다.<br>영상은 누르면 바로 재생되고, 이미지는 원본 페이지로 이동합니다.</p>
+      </div>
+
+      <div class="works__tabs" role="tablist" aria-label="작업물 분류">
+        <button type="button" class="works__tab is-on" role="tab" aria-selected="true" data-set="video">Video <span class="works__count">00</span></button>
+        <button type="button" class="works__tab" role="tab" aria-selected="false" data-set="image">Image <span class="works__count">00</span></button>
       </div>
 
       <div class="slider">
@@ -269,7 +273,7 @@
           <li class="exp__row is-now" data-reveal>
             <span class="exp__when">2026.01 — Now</span>
             <div class="exp__what"><strong>(주)페이패스</strong><span>경영관리본부 · 마케팅팀장</span></div>
-            <p class="exp__desc">PG사 마케팅을 이끌고 있습니다.</p>
+            <p class="exp__desc">PG사 마케팅, 사내 내부 사업 영상 제작·편집·촬영</p>
           </li>
           <li class="exp__row" data-reveal>
             <span class="exp__when">2024.12 — 2025.12</span>
@@ -342,25 +346,9 @@
       </div>
     </section>
 
-    <!-- MY WORK -->
-    <section class="sec mywork" id="mywork">
-      <div class="label"><span class="label__no">05</span><span>My Work</span><span class="label__tc">IN 00:01:36:02</span></div>
-      <div class="mw__head">
-        <h2 class="mw__title">My<br>Work</h2>
-        <p class="mw__note">마우스를 올리면 색이 돌아옵니다.<br>누르면 작업물이 있는 곳으로 이동합니다.</p>
-      </div>
-
-      <div class="mw__tabs" role="tablist" aria-label="작업물 분류">
-        <button type="button" class="mw__tab is-on" role="tab" aria-selected="true" data-set="video">Video <span class="mw__count">00</span></button>
-        <button type="button" class="mw__tab" role="tab" aria-selected="false" data-set="image">Image <span class="mw__count">00</span></button>
-      </div>
-
-      <ul class="mw__grid is-video" id="mwGrid"></ul>
-    </section>
-
     <!-- CONTACT -->
     <section class="sec contact" id="contact" data-theme="red">
-      <div class="label"><span class="label__no">06</span><span>Contact</span><span class="label__tc">OUT 00:02:59:23</span></div>
+      <div class="label"><span class="label__no">05</span><span>Contact</span><span class="label__tc">OUT 00:02:59:23</span></div>
       <h2 class="contact__title">
         <span class="fitbox"><span data-fit>LET'S MAKE</span></span>
         <span class="contact__line"><em>something</em><span>WORTH</span></span>
@@ -417,10 +405,9 @@
     </div>
   </div>
 
-  <script src="js/works.js?v=20261120d"></script>
-  <script src="js/capabilities.js?v=20261120d"></script>
-  <script src="js/mywork.js?v=20261120d"></script>
-  <script src="js/extras.js?v=20261120d"></script>
-  <script src="js/main.js?v=20261120d"></script>
+  <script src="js/works.js?v=20261120e"></script>
+  <script src="js/capabilities.js?v=20261120e"></script>
+  <script src="js/extras.js?v=20261120e"></script>
+  <script src="js/main.js?v=20261120f"></script>
 </body>
 </html>
