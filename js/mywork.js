@@ -19,20 +19,17 @@ window.MYWORK = {
 
   images: [
     { title: "Year of the Blue Dragon", img: "assets/img/art/blue-dragon.jpg", url: "https://www.artstation.com/artwork/RywNOO" },
-    { title: "Woman in the Water", img: "assets/img/art/woman-in-the-water.jpg", url: "https://www.artstation.com/artwork/AlkvPq" },
     { title: "Saintess", img: "assets/img/art/saintess.jpg", url: "https://www.artstation.com/artwork/OGDwOb" },
-    { title: "Overwatch 2 — My Concept Art", img: "assets/img/art/overwatch2-concept.jpg", url: "https://www.artstation.com/artwork/n00za1" },
-    { title: "Junker Queen — Overwatch 2", img: "assets/img/art/junker-queen.jpg", url: "https://www.artstation.com/artwork/RyyxPX" },
+    { title: "Illustration — Phone Wallpaper", img: "assets/img/art/phone-wallpaper-illustration.jpg", url: "https://www.artstation.com/artwork/5vvrnJ" },
+    { title: "Unknown Chinese Lady", img: "assets/img/art/unknown-chinese-lady.jpg", url: "https://www.artstation.com/artwork/5vv3Lw" },
+    { title: "Blue Moon Mafia — Group Photo", img: "assets/img/art/blue-moon-mafia.jpg", url: "https://www.artstation.com/artwork/m88Qke" },
     { title: "RED SUN — Fighting Dog", img: "assets/img/art/red-sun-fighting-dog.jpg", url: "https://www.artstation.com/artwork/Zev2KN" },
     { title: "RED SUN — Assassin", img: "assets/img/art/red-sun-assassin.jpg", url: "https://www.artstation.com/artwork/X1QEm3" },
-    { title: "RED SUN — Caporegime", img: "assets/img/art/red-sun-caporegime.jpg", url: "https://www.artstation.com/artwork/g8Nge8" },
-    { title: "RED SUN — Under Boss", img: "assets/img/art/red-sun-under-boss.jpg", url: "https://www.artstation.com/artwork/Qn0m44" },
-    { title: "DOSA Art Competition", img: "assets/img/art/dosa-art-competition.jpg", url: "https://www.artstation.com/artwork/2q6l6x" },
-    { title: "Viatris Alchemist", img: "assets/img/art/viatris-alchemist.jpg", url: "https://www.artstation.com/artwork/vJQmmE" },
-    { title: "PRISM Corium Corpus", img: "assets/img/art/prism-corium-corpus.jpg", url: "https://www.artstation.com/artwork/ZeBJRx" },
-    { title: "Dentophobia", img: "assets/img/art/dentophobia.jpg", url: "https://www.artstation.com/artwork/3qZW4E" },
-    { title: "Demon Summoner", img: "assets/img/art/demon-summoner.jpg", url: "https://www.artstation.com/artwork/VyanzR" },
-    { title: "Arcane Motive — Zaun", img: "assets/img/art/arcane-zaun.jpg", url: "https://www.artstation.com/artwork/vJbwma" },
-    { title: "Diablo II Fan Art", img: "assets/img/art/diablo-fanart.jpg", url: "https://www.artstation.com/artwork/18AwOe" }
+    { title: "Successful Fan", img: "assets/img/art/successful-fan.jpg", url: "https://www.artstation.com/artwork/r9GELJ" },
+    { title: "Arcane Motive", img: "assets/img/art/arcane-motive.jpg", url: "https://www.artstation.com/artwork/Pe6NE1" },
+    { title: "Gold Eagle Knight", img: "assets/img/art/gold-eagle-knight.jpg", url: "https://www.artstation.com/artwork/Kr0Vd4" },
+    { title: "Concept Design", img: "assets/img/art/concept-design.jpg", url: "https://www.artstation.com/artwork/ea10dX" },
+    { title: "Men", img: "assets/img/art/men.jpg", url: "https://www.artstation.com/artwork/R3lq9W" },
+    { title: "Chess — Pawn", img: "assets/img/art/chess-pawn.jpg", url: "https://www.artstation.com/artwork/5XQRzg" }
   ]
 };
