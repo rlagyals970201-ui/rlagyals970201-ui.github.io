@@ -592,6 +592,42 @@ h1, h2, h3, p, dl, dd, figure { margin: 0; }
 .how__item:hover .how__no, .how__item:hover small { color: var(--fg); }
 .how__item:hover p { color: rgba(244, 244, 240, .92); }
 
+/* ---------------- EXPERIENCE ---------------- */
+.exp__title {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(64px, 11vw, 190px); line-height: .84; text-transform: uppercase;
+  margin: clamp(40px, 5vw, 72px) 0 clamp(48px, 6vw, 96px);
+}
+.exp__group + .exp__group { margin-top: clamp(56px, 6vw, 96px); }
+.exp__head {
+  font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gold); padding-bottom: 16px; border-bottom: 1px solid var(--hair-2);
+}
+.exp__row {
+  display: grid; grid-template-columns: 200px minmax(0, 1.1fr) minmax(0, 1fr); gap: 24px; align-items: baseline;
+  padding: 22px 0; border-bottom: 1px solid var(--hair);
+  transition: background .3s var(--ease), padding .3s var(--ease);
+}
+.exp__row:hover { background: var(--bg-2); padding-left: 14px; padding-right: 14px; }
+.exp__when { font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: .02em; }
+.exp__row.is-now .exp__when { color: var(--red); font-weight: 500; text-transform: uppercase; letter-spacing: .16em; }
+.exp__row.is-now .exp__when::before {
+  content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 10px; border-radius: 50%;
+  background: var(--red); vertical-align: middle;
+}
+.exp__what strong { font-size: clamp(18px, 1.6vw, 24px); font-weight: 700; letter-spacing: -.02em; }
+.exp__what span { display: block; margin-top: 4px; font-size: 14px; color: var(--muted); }
+.exp__desc { font-size: 14px; line-height: 1.8; color: var(--muted); }
+.exp__badge {
+  display: inline-block; padding: 4px 10px; font-size: 12px; font-weight: 700;
+  background: var(--red); color: var(--fg);
+}
+@media (max-width: 760px) {
+  .exp__row { grid-template-columns: 1fr; gap: 6px; }
+  .exp__row:hover { padding-left: 0; padding-right: 0; background: none; }
+  .exp__desc { margin-top: 4px; }
+}
+
 /* ---------------- CONTACT ---------------- */
 .contact { background: var(--red); color: var(--fg); }
 .contact .label { border-color: rgba(244, 244, 240, .3); }
