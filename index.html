@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20261120b">
+  <link rel="stylesheet" href="css/style.css?v=20261120c">
 </head>
 <body>
 
@@ -35,6 +35,7 @@
       <a href="#about">About</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#experience">Experience</a>
+      <a href="#mywork">My Work</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header__tc" aria-hidden="true"><i class="rec"></i><span id="tc">00:00:00:00</span></div>
@@ -122,7 +123,7 @@
           <p class="about__body" data-reveal>
             영화애니메이션을 전공하고, 학원 행정과 회계로 회사가 돌아가는 방식을 배운 뒤
             마케팅 팀장으로 기획·촬영·편집·디자인을 직접 해 왔습니다. 지금은 PG사 (주)페이패스 경영관리본부에서 마케팅팀장으로 일합니다.
-            유튜브 채널 5개를 동시에 운영하며 1일 1업로드를 목표로 롱폼 113편, 숏폼 320편을 만들었습니다.
+            유튜브 채널 5개를 동시에 운영하며 1일 1업로드를 목표로 롱폼 113편, 숏폼 320편을 만들었고, 이 숫자는 지금도 계속 늘어나는 중입니다.
             카메라를 들고 여러 사람을 직접 만나 찍어 온 시간이 쌓이면서, 지금은 화면 너머의 사람이 무엇을 말하고 싶은지부터 묻게 됐습니다.
           </p>
 
@@ -138,8 +139,8 @@
 
       <div class="facts">
         <div class="fact" data-reveal><span class="fact__k">YouTube Channels</span><strong>05</strong><em>직접 운영한 유튜브 채널</em></div>
-        <div class="fact" data-reveal><span class="fact__k">Long-form Videos</span><strong class="is-red">113</strong><em>롱폼 영상 제작</em></div>
-        <div class="fact" data-reveal><span class="fact__k">Short-form Videos</span><strong>320</strong><em>숏폼 영상 제작</em></div>
+        <div class="fact" data-reveal><span class="fact__k">Long-form Videos <span class="live"><i></i>REC</span></span><strong class="is-red">113<sup>+</sup></strong><em>롱폼 영상 · 지금도 계속 제작 중</em></div>
+        <div class="fact" data-reveal><span class="fact__k">Short-form Videos <span class="live"><i></i>REC</span></span><strong>320<sup>+</sup></strong><em>숏폼 영상 · 오늘도 업로드 중</em></div>
       </div>
     </section>
 
@@ -171,35 +172,45 @@
       <h2 class="cap__title">What I Do</h2>
 
       <ol class="cap__list">
-        <li class="cap__item" data-reveal>
+        <li class="cap__item has-gal" data-reveal data-cap="01">
           <span class="cap__trk">01</span>
           <h3>Video Editing</h3>
           <p>유튜브 예능, 인터뷰, 브랜드 필름처럼 장르마다 맞는 리듬이 다릅니다. 그 리듬에 맞춰 컷을 자르고, 이야기가 끝까지 붙잡히도록 구성합니다.</p>
           <ul class="tags"><li>Cut &amp; Pacing</li><li>Storytelling</li><li>Interview</li><li>Brand Film</li></ul>
+          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal01" aria-label="01 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
+          <div class="cap__gal" id="capGal01" aria-hidden="true"></div>
         </li>
-        <li class="cap__item" data-reveal>
+        <li class="cap__item has-gal" data-reveal data-cap="02">
           <span class="cap__trk">02</span>
           <h3>Motion &amp; Graphics</h3>
           <p>인포그래픽과 키네틱 타이포그래피로 정보를 한눈에 읽히게 만들고, 장면 사이를 트랜지션으로 자연스럽게 잇습니다.</p>
           <ul class="tags"><li>Infographic</li><li>Kinetic Type</li><li>Transition</li></ul>
+          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal02" aria-label="02 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
+          <div class="cap__gal" id="capGal02" aria-hidden="true"></div>
         </li>
-        <li class="cap__item" data-reveal>
+        <li class="cap__item has-gal" data-reveal data-cap="03">
           <span class="cap__trk">03</span>
           <h3>Color &amp; Sound</h3>
           <p>영상의 무드는 색과 소리에서 결정됩니다. 시네마틱한 색보정에 효과음과 사운드 믹싱을 더해 몰입감을 끌어올립니다.</p>
           <ul class="tags"><li>Color Grading</li><li>SFX</li><li>Sound Mixing</li></ul>
+          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal03" aria-label="03 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
+          <div class="cap__gal" id="capGal03" aria-hidden="true"></div>
         </li>
-        <li class="cap__item" data-reveal>
+        <li class="cap__item has-gal" data-reveal data-cap="04">
           <span class="cap__trk">04</span>
           <h3>Thumbnail &amp; Design</h3>
           <p>눌러 보고 싶어지는 썸네일, 읽기 편하면서도 멋있는 자막과 타이틀을 만듭니다. 포스터, 배너, SNS 광고 이미지와 카드뉴스, 브로슈어도 직접 디자인하고, 유튜브 SEO에 맞춘 설명 글까지 씁니다.</p>
           <ul class="tags"><li>Thumbnail</li><li>Banner</li><li>SNS Ads</li><li>Card News</li><li>Poster</li><li>YouTube SEO</li></ul>
+          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal04" aria-label="04 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
+          <div class="cap__gal" id="capGal04" aria-hidden="true"></div>
         </li>
-        <li class="cap__item" data-reveal>
+        <li class="cap__item has-gal" data-reveal data-cap="05">
           <span class="cap__trk">05</span>
           <h3>On-Set Filming</h3>
           <p>편집할 장면을 미리 그리면서 찍습니다. 현장에서 구도를 잡고 조명을 세팅하는 것까지 직접 합니다.</p>
           <ul class="tags"><li>Composition</li><li>Lighting</li><li>Interview</li><li>B-roll</li></ul>
+          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal05" aria-label="05 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
+          <div class="cap__gal" id="capGal05" aria-hidden="true"></div>
         </li>
         <li class="cap__item" data-reveal>
           <span class="cap__trk">06</span>
@@ -221,15 +232,30 @@
       <div class="tools">
         <div class="tools__head">
           <h3 class="tools__title">Tools</h3>
-          <p class="tools__note">어도비 툴을 능숙하게 다룹니다.<br>Google Flow, SUNO, Vrew, ImageFX 같은 AI 툴도 영상 제작에 바로 씁니다.</p>
+          <p class="tools__note">어도비 툴을 능숙하게 다룹니다.<br>기획과 제작에는 AI 툴을 함께 씁니다.</p>
         </div>
         <ul class="tools__grid">
           <li class="tool" data-reveal><span class="tool__ab">Pr</span><span class="tool__name">Premiere Pro</span><span class="tool__use">Edit</span></li>
           <li class="tool" data-reveal><span class="tool__ab">Ae</span><span class="tool__name">After Effects</span><span class="tool__use">Motion</span></li>
           <li class="tool" data-reveal><span class="tool__ab">Ps</span><span class="tool__name">Photoshop</span><span class="tool__use">Image</span></li>
           <li class="tool" data-reveal><span class="tool__ab">Ai</span><span class="tool__name">Illustrator</span><span class="tool__use">Graphic</span></li>
-          <li class="tool tool--more" data-reveal><span class="tool__ab">AI</span><span class="tool__name">Flow · SUNO · Vrew · ImageFX</span><span class="tool__use">AI Video</span></li>
+          <li class="tool tool--more" data-reveal><span class="tool__ab">AI</span><span class="tool__name">Chat · Code · Video AI</span><span class="tool__use">AI Workflow</span></li>
         </ul>
+        <div class="ai">
+          <div class="ai__row" data-reveal>
+            <span class="ai__k">Chat · Code AI</span>
+            <p class="ai__note">기획, 대본, 자료 정리와 코드 작업</p>
+            <ul class="ai__tags"><li>GPT</li><li>Claude</li><li>Gemini</li></ul>
+          </div>
+          <div class="ai__row" data-reveal>
+            <span class="ai__k">Video AI</span>
+            <p class="ai__note">영상 생성, 음악, 자막과 소스 제작</p>
+            <ul class="ai__tags">
+              <li class="is-link"><a href="https://higgsfield.ai/" target="_blank" rel="noopener">Higgsfield Video AI ↗</a></li>
+              <li>SUNO</li><li>Vrew</li><li>Google AI Studio</li><li>Flow</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -317,43 +343,20 @@
       </div>
     </section>
 
-    <!-- HOW I WORK -->
-    <section class="sec how">
-      <div class="label"><span class="label__no">05</span><span>How I Work</span><span class="label__tc">IN 00:01:36:02</span></div>
-      <h2 class="how__title">How<br>I Work</h2>
-
-      <div class="how__grid">
-        <article class="how__item" data-reveal>
-          <span class="how__no">01</span>
-          <h3>Hook First</h3><small>첫 3초</small>
-          <p>처음 3초 안에 시선을 붙잡는 구조부터 설계합니다. 끝까지 보게 만드는 건 그다음 일입니다.</p>
-        </article>
-        <article class="how__item" data-reveal>
-          <span class="how__no">02</span>
-          <h3>Rhythm &amp; Pace</h3><small>리듬과 호흡</small>
-          <p>필요 없는 여백은 덜어내고, 컷과 사운드가 같은 호흡으로 흘러가게 만듭니다.</p>
-        </article>
-        <article class="how__item" data-reveal>
-          <span class="how__no">03</span>
-          <h3>Detail &amp; DI</h3><small>디테일</small>
-          <p>색보정부터 자막 위치 1px까지, 마지막 디테일에서 타협하지 않습니다.</p>
-        </article>
-        <article class="how__item" data-reveal>
-          <span class="how__no">04</span>
-          <h3>Fast Feedback</h3><small>빠른 피드백</small>
-          <p>소통은 명확하게, 피드백 반영은 빠르게 합니다. 약속한 납기는 지킵니다.</p>
-        </article>
-        <article class="how__item" data-reveal>
-          <span class="how__no">05</span>
-          <h3>Lead &amp; Align</h3><small>팀 리딩 · 조율</small>
-          <p>마케팅 팀장으로 프로젝트 방향을 정하고, 디자인과 영상이 실제 성과로 이어지게 이끌었습니다. 의견이 갈리면 모두가 납득할 지점까지 맞춰 갑니다.</p>
-        </article>
-        <article class="how__item" data-reveal>
-          <span class="how__no">06</span>
-          <h3>People On Set</h3><small>사람을 만나는 일</small>
-          <p>다양한 사람을 직접 찍으며 만나 왔습니다. 카메라 앞의 긴장을 푸는 법은 현장에서 배웠습니다.</p>
-        </article>
+    <!-- MY WORK -->
+    <section class="sec mywork" id="mywork">
+      <div class="label"><span class="label__no">05</span><span>My Work</span><span class="label__tc">IN 00:01:36:02</span></div>
+      <div class="mw__head">
+        <h2 class="mw__title">My<br>Work</h2>
+        <p class="mw__note">마우스를 올리면 색이 돌아옵니다.<br>누르면 작업물이 있는 곳으로 이동합니다.</p>
       </div>
+
+      <div class="mw__tabs" role="tablist" aria-label="작업물 분류">
+        <button type="button" class="mw__tab is-on" role="tab" aria-selected="true" data-set="video">Video <span class="mw__count">00</span></button>
+        <button type="button" class="mw__tab" role="tab" aria-selected="false" data-set="image">Image <span class="mw__count">00</span></button>
+      </div>
+
+      <ul class="mw__grid is-video" id="mwGrid"></ul>
     </section>
 
     <!-- CONTACT -->
@@ -385,7 +388,6 @@
       <span>End of Sequence</span>
       <a href="#top">Back to top ↑</a>
     </div>
-    <div class="fitbox footer__name"><span data-fit>HYOMIN</span></div>
   </footer>
 
   <!-- FLOATING TOP -->
@@ -416,7 +418,10 @@
     </div>
   </div>
 
-  <script src="js/works.js?v=20261120a"></script>
-  <script src="js/main.js?v=20261119c"></script>
+  <script src="js/works.js?v=20261120c"></script>
+  <script src="js/capabilities.js?v=20261120c"></script>
+  <script src="js/mywork.js?v=20261120c"></script>
+  <script src="js/extras.js?v=20261120c"></script>
+  <script src="js/main.js?v=20261120c"></script>
 </body>
 </html>

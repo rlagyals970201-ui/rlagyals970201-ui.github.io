@@ -60,3 +60,15 @@ python -m http.server 5500
 2. 이 폴더의 파일을 모두 업로드합니다. 웹에서 *Add file → Upload files* 로 끌어다 놓아도 됩니다.
 3. 저장소의 **Settings → Pages** 에서 Source 를 `Deploy from a branch`, Branch 를 `main` / `(root)` 로 지정하고 저장합니다.
 4. 1~2분 뒤 사이트 주소가 표시됩니다.
+
+## 6. Capabilities 펼침 이미지 넣기
+
+`js/capabilities.js` 에서 번호(01~05)별로 이미지 경로를 적으면 됩니다.
+이미지는 `assets/img/cap/` 폴더에 넣어 주세요. 비어 있는 칸은 "Coming Soon" 빈 액자로 보입니다.
+
+## 7. My Work 작업물 추가하기
+
+`js/mywork.js` 에서 추가합니다.
+
+- 영상(`videos`): 제목과 유튜브 주소만 넣으면 썸네일은 자동으로 가져옵니다.
+- 이미지(`images`): 이미지 파일을 `assets/img/art/` 에 넣고, 제목·이미지 경로·눌렀을 때 갈 주소를 적어 주세요.
