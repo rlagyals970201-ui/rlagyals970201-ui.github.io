@@ -92,6 +92,34 @@ window.WORKS = [
     year: "2025",
     role: "Edit / Design",
     url: "https://www.youtube.com/watch?v=KcAXEx-FrZY"
+  },
+  {
+    title: "울트라나노 스포츠크림 남성 버전 — AI 광고 영상",
+    category: "AI Ad",
+    year: "2026",
+    role: "AI Video / Edit",
+    url: "https://youtube.com/shorts/2X6qhedsVSE"
+  },
+  {
+    title: "울트라나노 스포츠크림 여성 버전 — AI 광고 영상",
+    category: "AI Ad",
+    year: "2026",
+    role: "AI Video / Edit",
+    url: "https://youtube.com/shorts/4kOdeg5ZmXQ"
+  },
+  {
+    title: "명지대학교 웹앱 사이트 홍보 영상",
+    category: "Promotion",
+    year: "2026",
+    role: "Edit / Design",
+    url: "https://youtu.be/5GQLxSA_zxo"
+  },
+  {
+    title: "결혼식 식전 영상",
+    category: "Wedding Film",
+    year: "2026",
+    role: "Edit / Design",
+    url: "https://youtu.be/DH6sgGhdlwo"
   }
 ];
 
@@ -101,9 +129,30 @@ window.WORKS = [
    - 이미지 파일은 assets/img/art/ 에 넣고 img 에 경로를 적어 주세요.
    - url 은 눌렀을 때 이동할 주소입니다(아트스테이션 등).
    - category 를 적으면 카드에 분류가 표시됩니다(기본: Illustration).
+   - url 을 비워 두면 누를 때 이미지를 크게 보여 줍니다.
+   - frame: "wide" 는 가로형(명함·배너·썸네일), "tall" 은 세로 배너, 비우면 정사각입니다.
    ===================================================== */
 
 window.ART = [
+  /* 디자인 작업물: url 이 없으면 누를 때 크게 보기로 열립니다.
+     frame: "wide"(16:9) / "tall"(세로 배너) / "square"(정사각, 기본) */
+  { title: "애모모 유튜브 썸네일", category: "Thumbnail", img: "assets/img/design/amomo-thumbnail-1.jpg", frame: "wide" },
+  { title: "애모모 썸네일 — 첫 시참비 10만원", category: "Thumbnail", img: "assets/img/design/amomo-thumbnail-2.jpg", frame: "wide" },
+  { title: "미디어데일리 메인 배너", category: "Web Banner", img: "assets/img/design/mediadaily-main-banner.jpg", frame: "wide" },
+  { title: "미디어데일리 × GBW 업무협약식 배너", category: "Event Banner", img: "assets/img/design/mediadaily-gbw-banner.jpg", frame: "wide" },
+  { title: "법률사무소 다연 보험전문센터 배너", category: "Web Banner", img: "assets/img/design/dayeon-insurance-banner.jpg", frame: "wide" },
+  { title: "보험톡톡 X배너 — 유리 파손 보상", category: "Standing Banner", img: "assets/img/design/standing-banner-1.jpg", frame: "tall" },
+  { title: "보험톡톡 X배너 — 손해사정사 소개", category: "Standing Banner", img: "assets/img/design/standing-banner-2.jpg", frame: "tall" },
+  { title: "애모모 유튜브 채널 배너", category: "Channel Art", img: "assets/img/design/amomo-channel-banner.jpg", frame: "wide" },
+  { title: "애매모모 채널 배너", category: "Channel Art", img: "assets/img/design/aemaemomo-banner.jpg", frame: "wide" },
+  { title: "CL SKIN LAB 명함 — 앞면", category: "Business Card", img: "assets/img/design/clskinlab-card-front.jpg", frame: "wide" },
+  { title: "CL SKIN LAB 명함 — 뒷면", category: "Business Card", img: "assets/img/design/clskinlab-card-back.jpg", frame: "wide" },
+  { title: "PAYPASS 명함", category: "Business Card", img: "assets/img/design/paypass-card.jpg", frame: "wide" },
+  { title: "법률사무소 다연 명함", category: "Business Card", img: "assets/img/design/dayeon-card.jpg", frame: "wide" },
+  { title: "가족 단체티 캐릭터 디자인", category: "Merch Design", img: "assets/img/design/family-tshirt.jpg", frame: "square" },
+  { title: "꽃나이 협동조합 탑차 랩핑 디자인", category: "Vehicle Design", img: "assets/img/design/kkotnai-truck-wrap.jpg", frame: "wide" },
+
+  /* 아트스테이션 일러스트 */
     { title: "Year of the Blue Dragon", img: "assets/img/art/blue-dragon.jpg", url: "https://www.artstation.com/artwork/RywNOO" },
     { title: "Saintess", img: "assets/img/art/saintess.jpg", url: "https://www.artstation.com/artwork/OGDwOb" },
     { title: "Illustration — Phone Wallpaper", img: "assets/img/art/phone-wallpaper-illustration.jpg", url: "https://www.artstation.com/artwork/5vvrnJ" },

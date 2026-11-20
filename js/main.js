@@ -94,24 +94,26 @@
   }
   function artCard(a, i) {
     const no = pad(i + 1);
-    return `
-      <li class="work is-art">
-        <a class="work__btn" href="${esc(a.url || '#')}" target="_blank" rel="noopener" draggable="false" aria-label="${esc(a.title)} 보러 가기">
+    // frame: "square"(기본, 꽉 채움) / "wide"(16:9 안에 전체가 보이게) / "tall"(9:16 안에 전체가 보이게)
+    const frame = a.frame || 'square';
+    const cls = frame === 'wide' ? 'is-wide is-fit' : frame === 'tall' ? 'is-short is-fit' : 'is-square';
+    const media = `
           <div class="work__media">
             <img src="${esc(a.img)}" alt="" loading="lazy" draggable="false">
             <div class="hud" aria-hidden="true">
               <span class="hud__tl"><b>G1</b>Still ${no}</span>
-              <span class="hud__tr">1:1</span>
+              <span class="hud__tr">${a.url ? 'Link' : 'View'}</span>
               <span class="hud__safe"></span>
             </div>
           </div>
           <div class="work__meta">
             <span class="work__no">${no}</span>
             <h3 class="work__title">${esc(a.title)}</h3>
-            <span class="work__cat">${esc(a.category || 'Illustration')} ↗</span>
-          </div>
-        </a>
-      </li>`;
+            <span class="work__cat">${esc(a.category || 'Illustration')}${a.url ? ' ↗' : ''}</span>
+          </div>`;
+    return a.url
+      ? `<li class="work is-art ${cls}"><a class="work__btn" href="${esc(a.url)}" target="_blank" rel="noopener" draggable="false" aria-label="${esc(a.title)} 보러 가기">${media}</a></li>`
+      : `<li class="work is-art ${cls}"><button type="button" class="work__btn" data-lb="${esc(a.img)}" aria-label="${esc(a.title)} 크게 보기">${media}</button></li>`;
   }
   function renderTrack() {
     const list = kind === 'video' ? works : art;
@@ -247,8 +249,8 @@
 
   track.addEventListener('click', (e) => {
     const btn = e.target.closest('.work__btn');
-    if (!btn || moved) { e.preventDefault(); return; }
-    if (btn.tagName === 'A') return;          // 이미지 카드는 링크로 이동
+    if (!btn || moved) { e.preventDefault(); e.stopPropagation(); return; }
+    if (btn.tagName === 'A' || btn.dataset.lb) return;   // 이미지 카드: 링크 이동 또는 크게 보기
     openModal(+btn.dataset.index);
   }, true);
 

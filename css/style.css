@@ -652,8 +652,12 @@ h1, h2, h3, p, dl, dd, figure { margin: 0; }
 .works__tab.is-on::after { transform: scaleX(1); }
 .works__count { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; vertical-align: top; color: var(--gold); margin-left: 4px; }
 
-.slider__track .work.is-art { flex-basis: calc(var(--cw) * .5625); }   /* 16:9 카드와 높이를 맞춘 1:1 */
-.work.is-art .work__media { aspect-ratio: 1 / 1; }
+.slider__track .work.is-square { flex-basis: calc(var(--cw) * .5625); }   /* 16:9 카드와 높이를 맞춘 1:1 */
+.work.is-square .work__media { aspect-ratio: 1 / 1; }
+.work.is-fit .work__media { background: #121212; }
+.work.is-fit .work__media img { object-fit: contain; transform: none; }
+.work.is-fit .work__btn:hover .work__media img { transform: scale(1.02); }
+.work.is-art button.work__btn { cursor: zoom-in; }
 .work.is-art .work__meta { grid-template-columns: 1fr; }
 .work.is-art .work__cat { grid-column: 1; }
 .work.is-art a.work__btn { color: inherit; }
@@ -872,7 +876,7 @@ body.is-locked { overflow: hidden; }
   .works__head { flex-direction: column; align-items: flex-start; }
   .works__note { text-align: left; }
   .slider__track { --cw: 82vw; }
-  .slider__track .work.is-short, .slider__track .work.is-art { flex-basis: 46vw; }
+  .slider__track .work.is-short, .slider__track .work.is-square { flex-basis: 46vw; }
   .totop { width: 58px; height: 58px; }
   .totop__label { font-size: 19px; }
   .work__meta { grid-template-columns: 32px minmax(0, 1fr); }
