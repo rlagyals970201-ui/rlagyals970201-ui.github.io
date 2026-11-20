@@ -8,15 +8,15 @@
    ===================================================== */
 
 window.CAP_IMAGES = {
-  "01": [   // Video Editing
+  "01": [   // Video Editing (편집·모션·컬러·사운드)
     // "assets/img/cap/01-1.jpg",
   ],
-  "02": [   // Motion & Graphics
+  "02": [   // On-Set Filming (촬영)
   ],
-  "03": [   // Color & Sound
+  "03": [   // Thumbnail & Design (디자인)
   ],
-  "04": [   // Thumbnail & Design
+  "04": [   // Marketing & Channel (마케팅·채널 운영)
   ],
-  "05": [   // On-Set Filming
+  "05": [   // AI Workflow
   ]
 };
