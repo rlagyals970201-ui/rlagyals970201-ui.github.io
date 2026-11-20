@@ -11,7 +11,7 @@
   $$('.cap__item[data-cap]').forEach((item) => {
     const key = item.dataset.cap;
     const imgs = CAP[key] || [];
-    const slots = Math.max(5, imgs.length);
+    const slots = imgs.length || 5;   // 이미지가 있으면 그 개수만큼, 없으면 빈 칸 5개
     const btn = $('.cap__toggle', item);
     const gal = $('.cap__gal', item);
     if (!btn || !gal) return;
@@ -24,7 +24,7 @@
              <img src="${esc(src)}" alt="" loading="lazy"><span class="shot__no">IMG ${pad(i + 1)}</span></button></li>`
         : `<li><div class="shot is-empty"><span class="shot__no">IMG ${pad(i + 1)}</span><span class="shot__soon">Coming Soon</span></div></li>`;
     }
-    gal.innerHTML = `<div class="cap__gal-in"><ul class="cap__shots">${html}</ul></div>`;
+    gal.innerHTML = `<div class="cap__gal-in"><ul class="cap__shots" style="--n:${Math.min(slots, 5)}">${html}</ul></div>`;
 
     btn.addEventListener('click', () => {
       const open = item.classList.toggle('is-open');
