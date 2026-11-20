@@ -38,11 +38,11 @@ window.WORKS = [
     url: "https://www.youtube.com/watch?v=ebfg6C140b4"
   },
   {
-    title: "대한무에타이협회장 최광진 단독 인터뷰",
-    category: "Interview",
+    title: "변호사가 보는 노키즈존, 과연 어디까지 차별일까?",
+    category: "YouTube Content",
     year: "2026",
     role: "Edit / Design",
-    url: "https://www.youtube.com/watch?v=dMkGr2oI5hc"
+    url: "https://www.youtube.com/watch?v=OajTZtMID2w"
   },
   {
     title: "빙빙이와 효밍이의 히로시마 3박4일 여행",
