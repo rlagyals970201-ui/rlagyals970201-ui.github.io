@@ -9,7 +9,11 @@
 
 window.CAP_IMAGES = {
   "01": [   // Video Editing (편집·모션·컬러·사운드)
-    // "assets/img/cap/01-1.jpg",
+    "assets/img/cap/01-1.jpg",   // 연세더바로병원 인터뷰 — 프리미어 컬러
+    "assets/img/cap/01-2.jpg",   // 이우찬 부회장 인터뷰 — HSL 보조
+    "assets/img/cap/01-3.jpg",   // 조윤주 변호사 — 오디오 정리
+    "assets/img/cap/01-4.jpg",   // 울트라나노 — 애프터이펙트 모션
+    "assets/img/cap/01-5.jpg",   // 대한무에타이협회 — 세로형 인터뷰
   ],
   "02": [   // On-Set Filming (촬영)
   ],
