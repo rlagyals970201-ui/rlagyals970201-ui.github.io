@@ -50,6 +50,48 @@ window.WORKS = [
     year: "2026",
     role: "Edit / Design",
     url: "https://youtu.be/z6cYzkY08_4"
+  },
+  {
+    title: "관리비 냈으면 화재보험 안 들어도 될까? 전세 세입자가 빚더미에 앉는 이유",
+    category: "YouTube Content",
+    year: "2026",
+    role: "Edit / Design",
+    url: "https://www.youtube.com/watch?v=nYRkpohFRlQ"
+  },
+  {
+    title: "길 가다 넘어졌다면? 지자체에서 병원비 받는 법 — 영조물 배상책임",
+    category: "YouTube Content",
+    year: "2026",
+    role: "Edit / Design",
+    url: "https://www.youtube.com/watch?v=7cjupAlOkIg"
+  },
+  {
+    title: "대한무에타이협회장 최광진 단독 인터뷰",
+    category: "Interview",
+    year: "2026",
+    role: "Edit / Design",
+    url: "https://www.youtube.com/watch?v=dMkGr2oI5hc"
+  },
+  {
+    title: "미대편입창조 패션디자인반 수강생 인터뷰",
+    category: "Interview",
+    year: "2023",
+    role: "Edit / Design",
+    url: "https://www.youtube.com/watch?v=aCSKPu8hw0k"
+  },
+  {
+    title: "미대편입 4개월 만에 3관왕! 수원대·남서울대·협성대",
+    category: "YouTube Content",
+    year: "2023",
+    role: "Edit / Design",
+    url: "https://www.youtube.com/watch?v=OMr3xs2qI40"
+  },
+  {
+    title: "공포게임 마니아들의 REPO 합방",
+    category: "Gaming",
+    year: "2025",
+    role: "Edit / Design",
+    url: "https://www.youtube.com/watch?v=KcAXEx-FrZY"
   }
 ];
 
