@@ -36,10 +36,10 @@ window.CAP_IMAGES = {
     "assets/img/cap/04-5.jpg",   // 미디어데일리 홈페이지 운영
   ],
   "05": [   // AI Workflow
-    "assets/img/cap/05-1.jpg",   // Claude — 인터뷰 영상 편집 자동화
-    "assets/img/cap/05-2.jpg",   // SUNO — 광고 배경음악 생성
-    "assets/img/cap/05-3.jpg",   // Higgsfield — AI B-roll 영상 생성
-    "assets/img/cap/05-4.jpg",   // Vrew — 자막 작업
-    "assets/img/cap/05-5.jpg",   // ChatGPT — 인터뷰 장면 이미지 생성
+    "assets/img/cap/05-1.jpg?v=2",   // Claude — 인터뷰 영상 편집 자동화
+    "assets/img/cap/05-2.jpg?v=2",   // SUNO — 광고 배경음악 생성
+    "assets/img/cap/05-3.jpg?v=2",   // Higgsfield — AI B-roll 영상 생성
+    "assets/img/cap/05-4.jpg?v=2",   // Vrew — 자막 작업
+    "assets/img/cap/05-5.jpg?v=2",   // ChatGPT — 인터뷰 장면 이미지 생성
   ]
 };
