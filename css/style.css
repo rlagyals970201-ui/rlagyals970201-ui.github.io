@@ -927,3 +927,76 @@ body.is-locked { overflow: hidden; }
 .cap .tool:is(.is-pr, .is-ae, .is-ps, .is-ai):hover .tool__ab,
 .cap .tool:is(.is-pr, .is-ae, .is-ps, .is-ai):hover .tool__use { color: var(--app-fg); }
 .cap .tool:is(.is-pr, .is-ae, .is-ps, .is-ai):hover .tool__name { color: #fff; }
+
+/* ---------------- HERO 인트로 모션 ---------------- */
+/* JS가 준비될 때까지 잠깐 숨김 (JS가 없거나 늦으면 head 스크립트가 3초 뒤 해제) */
+.intro .hero__name h1, .intro .hero__role, .intro .hero__lede { visibility: hidden; }
+
+/* 큰 이름: 컷 편집처럼 글자마다 툭툭 들어옴 */
+.hero__name .ch {
+  display: inline-block;
+  animation: cut-in .55s cubic-bezier(.2, .9, .2, 1) both;
+}
+@keyframes cut-in {
+  0%   { opacity: 0; transform: translateY(.38em) scaleY(1.35); filter: blur(6px); }
+  35%  { opacity: 1; color: var(--red); filter: blur(0); }
+  60%  { transform: translateY(-.03em) scaleY(.98); }
+  100% { opacity: 1; transform: none; color: inherit; }
+}
+
+/* 빨간 전환 바가 이름 위를 훑고 지나감 */
+.hero__wipe {
+  position: absolute; z-index: 4; top: 0; bottom: 0; left: 0; width: 18%;
+  background: var(--red); mix-blend-mode: multiply; pointer-events: none;
+  transform: translateX(-120%) skewX(-12deg);
+  animation: wipe 1s cubic-bezier(.7, 0, .3, 1) .15s forwards;
+}
+@keyframes wipe { to { transform: translateX(640%) skewX(-12deg); } }
+
+/* 편집 화면 같은 크롭 마크 + REC 표시 */
+.hero__marks { position: absolute; inset: -14px -6px -10px; pointer-events: none; z-index: 2; }
+.hero__marks i {
+  position: absolute; width: 22px; height: 22px; border: 0 solid var(--red);
+  opacity: 0; animation: mark-in .5s var(--ease) both;
+}
+.hero__marks i:nth-child(1) { left: 0; top: 0; border-left-width: 2px; border-top-width: 2px; animation-delay: .05s; }
+.hero__marks i:nth-child(2) { right: 0; top: 0; border-right-width: 2px; border-top-width: 2px; animation-delay: .12s; }
+.hero__marks i:nth-child(3) { left: 0; bottom: 0; border-left-width: 2px; border-bottom-width: 2px; animation-delay: .19s; }
+.hero__marks i:nth-child(4) { right: 0; bottom: 0; border-right-width: 2px; border-bottom-width: 2px; animation-delay: .26s; }
+@keyframes mark-in { from { opacity: 0; transform: scale(1.8); } to { opacity: 1; transform: none; } }
+.hero__marks b {
+  position: absolute; right: 30px; top: -4px;
+  font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .1em; color: var(--red);
+  animation: mark-in .4s var(--ease) .3s both;
+}
+.hero__marks.is-done i, .hero__marks.is-done b { animation: mark-out .6s var(--ease) forwards; }
+@keyframes mark-out { to { opacity: 0; transform: scale(.9); } }
+
+/* 타이핑 커서 */
+.caret {
+  display: inline-block; width: .08em; min-width: 2px; height: 1em; margin-left: .06em;
+  vertical-align: -.12em; background: var(--red);
+  animation: caret-blink .8s steps(2, start) infinite;
+}
+.caret.is-done { animation: caret-out .4s forwards; }
+@keyframes caret-blink { to { visibility: hidden; } }
+@keyframes caret-out { to { opacity: 0; width: 0; margin: 0; } }
+
+/* 손글씨: 단어마다 멈칫하며 써지는 느낌 */
+.hero__script { animation: hand-write 1.9s linear 1.5s both; }
+@keyframes hand-write {
+  0%   { clip-path: inset(-20% 100% -20% 0); }
+  26%  { clip-path: inset(-20% 72% -20% 0); }   /* Edit */
+  34%  { clip-path: inset(-20% 72% -20% 0); }
+  44%  { clip-path: inset(-20% 57% -20% 0); }   /* & */
+  52%  { clip-path: inset(-20% 57% -20% 0); }
+  100% { clip-path: inset(-20% -12% -20% 0); }  /* Design */
+}
+.hero__swash path { animation: draw .9s var(--ease) 3.3s forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__name .ch, .hero__wipe, .hero__marks, .caret { animation: none !important; }
+  .hero__wipe, .hero__marks { display: none; }
+  .hero__script { animation: none; }
+  .hero__swash path { animation: none; stroke-dashoffset: 0; }
+}
