@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=20261120k">
+  <link rel="stylesheet" href="css/style.css?v=20261123b">
 </head>
 <body>
 
@@ -131,7 +131,7 @@
             <div><dt>Born</dt><dd>1997. 02. 01</dd></div>
             <div><dt>Role</dt><dd>Video Editor / Designer / Filmmaker / Content Marketer</dd></div>
             <div><dt>Now</dt><dd>(주)페이패스 <span>경영관리본부 마케팅팀장</span></dd></div>
-            <div><dt>Study</dt><dd>순천향대학교 <span>영화애니메이션 전공</span><br>충남디자인예술고등학교 <span>애니메이션 전공</span></dd></div>
+            <div><dt>Study</dt><dd>순천향대학교 <span>영화애니메이션 전공</span><small class="spec__sub">복수전공 인테리어비즈니스SC전공</small>충남디자인예술고등학교 <span>애니메이션 전공</span></dd></div>
           </dl>
         </div>
       </div>
@@ -148,25 +148,16 @@
       <div class="label"><span class="label__no">02</span><span>Selected Works</span><span class="label__tc">IN 00:00:42:12</span></div>
       <div class="works__head">
         <h2 class="works__title">Selected<br>Works</h2>
-        <p class="works__note">직접 편집하고 그린 작업물들입니다.<br>영상은 누르면 바로 재생되고, 이미지는 원본 페이지로 이동합니다.</p>
+        <p class="works__note">직접 편집하고 디자인한 작업물들입니다.<br>아래 Video / Image 버튼으로 바꿔 볼 수 있어요.</p>
       </div>
 
       <div class="works__tabs" role="tablist" aria-label="작업물 분류">
-        <button type="button" class="works__tab is-on" role="tab" aria-selected="true" data-set="video">Video <span class="works__count">00</span></button>
-        <button type="button" class="works__tab" role="tab" aria-selected="false" data-set="image">Image <span class="works__count">00</span></button>
+        <button type="button" class="works__tab is-on" role="tab" aria-selected="true" data-set="video"><span>Video<small>영상 작업물 보기</small></span><span class="works__count">00</span></button>
+        <button type="button" class="works__tab" role="tab" aria-selected="false" data-set="image"><span>Image<small>디자인 · 일러스트 보기</small></span><span class="works__count">00</span></button>
       </div>
 
-      <div class="slider">
-        <ul class="slider__track" id="track"></ul>
-      </div>
-      <div class="slider__ui">
-        <span class="slider__count"><b id="cur">01</b> / <span id="total">00</span></span>
-        <div class="slider__bar"><i id="bar"></i></div>
-        <div class="slider__btns">
-          <button type="button" class="sbtn" id="prev" aria-label="이전 영상">←</button>
-          <button type="button" class="sbtn" id="next" aria-label="다음 영상">→</button>
-        </div>
-      </div>
+      <ul class="wgrid is-video" id="wgrid"></ul>
+      <button type="button" class="wmore" id="wmore" hidden>More</button>
       <div class="cursor" id="cursor" aria-hidden="true">Play</div>
     </section>
 
@@ -176,34 +167,33 @@
       <h2 class="cap__title">What I Do</h2>
 
       <ol class="cap__list">
-        <li class="cap__item has-gal" data-reveal data-cap="01">
+        <li class="cap__item" data-reveal data-cap="01">
           <span class="cap__trk">01</span>
           <h3>Video Editing</h3>
           <p>인터뷰, 브랜드 필름, 유튜브 롱폼과 숏폼까지 장르에 맞는 리듬으로 컷을 자릅니다. 모션그래픽과 키네틱 타이포로 정보를 한눈에 읽히게 만들고, 색보정과 효과음·사운드 믹싱으로 영상의 무드를 완성합니다.</p>
           <ul class="tags"><li>Cut &amp; Pacing</li><li>Motion Graphics</li><li>Kinetic Type</li><li>Color Grading</li><li>Sound Mixing</li><li>SFX</li></ul>
-          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal01" aria-label="01 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
-          <div class="cap__gal" id="capGal01" aria-hidden="true"></div>
+          <div class="cap__gal" id="capGal01"></div>
         </li>
-        <li class="cap__item has-gal" data-reveal data-cap="02">
+        <li class="cap__item" data-reveal data-cap="02">
           <span class="cap__trk">02</span>
           <h3>On-Set Filming</h3>
           <p>편집할 장면을 미리 머릿속으로 구상한 뒤 기획하고 찍습니다. 인터뷰와 현장 스케치를 직접 촬영하며, 구도를 잡고 조명과 오디오를 세팅하는 것까지 혼자서도 해냅니다.</p>
           <div class="cap__tagset">
             <ul class="tags"><li>Interview</li><li>B-roll</li><li>Lighting</li><li>Audio</li></ul>
+            <span class="gear__k"><i></i>Gear Experience</span>
+            <small class="gear__sub">직접 사용해 본 촬영 장비</small>
             <ul class="tags tags--gear"><li>Osmo Pocket 3</li><li>Osmo Pocket 4P</li><li>Canon EOS R50</li><li>DH-5070</li><li>DJI Mic Mini</li><li>DJI Mic 3</li></ul>
           </div>
-          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal02" aria-label="02 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
-          <div class="cap__gal" id="capGal02" aria-hidden="true"></div>
+          <div class="cap__gal" id="capGal02"></div>
         </li>
-        <li class="cap__item has-gal" data-reveal data-cap="03">
+        <li class="cap__item" data-reveal data-cap="03">
           <span class="cap__trk">03</span>
           <h3>Thumbnail &amp; Design</h3>
           <p>눌러 보고 싶어지는 썸네일부터 배너, 포스터, 명함, 카드뉴스까지 포토샵과 일러스트레이터로 직접 디자인합니다. 블로그 배너와 상단 꾸미기처럼 채널의 첫인상을 만드는 작업도 맡습니다.</p>
           <ul class="tags"><li>Thumbnail</li><li>Banner</li><li>Poster</li><li>Business Card</li><li>Blog Banner</li><li>Card News</li></ul>
-          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal03" aria-label="03 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
-          <div class="cap__gal" id="capGal03" aria-hidden="true"></div>
+          <div class="cap__gal" id="capGal03"></div>
         </li>
-        <li class="cap__item has-gal" data-reveal data-cap="04">
+        <li class="cap__item" data-reveal data-cap="04">
           <span class="cap__trk">04</span>
           <h3>Marketing &amp; Channel</h3>
           <p>네이버 블로그 광고 관리자로 광고를 집행하고, 미디어데일리 홈페이지를 관리·운영합니다. 유튜브, 인스타그램, 네이버 클립을 플랫폼마다 맞는 전략으로 운영하며, 유튜브 채널 5개를 동시에 맡아 1일 1업로드를 목표로 달려 왔습니다.</p>
@@ -220,16 +210,14 @@
               <li><a href="https://www.instagram.com/kmta.korea/" target="_blank" rel="noopener">@kmta.korea ↗</a></li>
             </ul>
           </div>
-          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal04" aria-label="04 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
-          <div class="cap__gal" id="capGal04" aria-hidden="true"></div>
+          <div class="cap__gal" id="capGal04"></div>
         </li>
-        <li class="cap__item has-gal" data-reveal data-cap="05">
+        <li class="cap__item" data-reveal data-cap="05">
           <span class="cap__trk">05</span>
           <h3>AI Workflow</h3>
           <p>기획, 대본, 자료 조사는 GPT·Claude·Gemini와 함께 빠르게 정리합니다. Higgsfield와 Flow로 영상 소스를 만들고, SUNO로 음악을, Vrew로 자막을 뽑아 제작 시간을 줄이고 결과물의 폭을 넓힙니다.</p>
           <ul class="tags"><li>GPT</li><li>Claude</li><li>Gemini</li><li>Higgsfield</li><li>Flow</li><li>SUNO</li><li>Vrew</li><li>Google AI Studio</li></ul>
-          <button type="button" class="cap__toggle" aria-expanded="false" aria-controls="capGal05" aria-label="05 작업 이미지 펼치기"><span aria-hidden="true">↓</span></button>
-          <div class="cap__gal" id="capGal05" aria-hidden="true"></div>
+          <div class="cap__gal" id="capGal05"></div>
         </li>
       </ol>
 
@@ -289,7 +277,7 @@
           <li class="exp__row" data-reveal>
             <span class="exp__when">2021.05 — 2024.01</span>
             <div class="exp__what"><strong>(주)아이비김영</strong><span>미대편입창조(수원)</span></div>
-            <p class="exp__desc">학원 행정·회계, 홍보 디자인, 블로그와 사이트 관리, 학생 상담</p>
+            <p class="exp__desc">학원 행정·회계, 영상 편집·홍보, 배너·포스터 제작 및 주문, 블로그와 사이트 관리, 학생 상담</p>
           </li>
         </ol>
       </div>
@@ -300,7 +288,7 @@
           <li class="exp__row" data-reveal>
             <span class="exp__when">2015 — 2021</span>
             <div class="exp__what"><strong>순천향대학교</strong><span>영화애니메이션 전공</span></div>
-            <p class="exp__desc">복수전공 인테리어디자인 · 졸업</p>
+            <p class="exp__desc">복수전공 인테리어비즈니스SC전공 · 졸업</p>
           </li>
           <li class="exp__row" data-reveal>
             <span class="exp__when">2020</span>
@@ -406,9 +394,9 @@
     </div>
   </div>
 
-  <script src="js/works.js?v=20261120k"></script>
-  <script src="js/capabilities.js?v=20261120k"></script>
-  <script src="js/extras.js?v=20261120k"></script>
-  <script src="js/main.js?v=20261120k"></script>
+  <script src="js/works.js?v=20261123b"></script>
+  <script src="js/capabilities.js?v=20261123b"></script>
+  <script src="js/extras.js?v=20261123b"></script>
+  <script src="js/main.js?v=20261123b"></script>
 </body>
 </html>

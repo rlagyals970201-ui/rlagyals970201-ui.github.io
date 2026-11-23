@@ -58,27 +58,37 @@
     short: w.format === 'short' || /\/shorts\//.test(w.url || ''),
   }));
 
-  /* ---------- 작업물: 가로 슬라이드 (Video / Image 탭) ---------- */
+  /* ---------- 작업물: 타일 그리드 (Video / Image 탭) ---------- */
   const art = (window.ART || []).filter((a) => a && a.img);
-  const track = $('#track');
+  const grid = $('#wgrid');
+  const moreBtn = $('#wmore');
+  const PAGE = 8;                 // 한 번에 보여 줄 개수 (4개씩 2줄)
   let kind = 'video';
-  let cards = [];
+  let shown = PAGE;
+
+  // 세로·가로로 긴 이미지는 흐린 배경 위에 전체가 보이게
+  const fitMedia = (src, fallback = '') => `
+            <img class="work__blur" src="${esc(src)}" alt="" loading="lazy" draggable="false" aria-hidden="true"${fallback}>
+            <img class="work__fit" src="${esc(src)}" alt="" loading="lazy" draggable="false"${fallback}>`;
 
   function videoCard(w, i) {
     const no = pad(i + 1);
-    const thumb = w.id
-      ? `<img src="https://i.ytimg.com/vi/${w.id}/${w.short ? 'oardefault' : 'maxresdefault'}.jpg" alt="" loading="lazy" draggable="false"
-          onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${w.id}/hqdefault.jpg'">`
-      : `<span class="work__ph">${no}</span>`;
+    let thumb = `<span class="work__ph">${no}</span>`;
+    if (w.id && w.short) {
+      thumb = fitMedia(`https://i.ytimg.com/vi/${w.id}/oardefault.jpg`,
+        ` onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${w.id}/hqdefault.jpg'"`);
+    } else if (w.id) {
+      thumb = `<img src="https://i.ytimg.com/vi/${w.id}/maxresdefault.jpg" alt="" loading="lazy" draggable="false"
+          onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${w.id}/hqdefault.jpg'">`;
+    }
     return `
-      <li class="work ${w.short ? 'is-short' : 'is-wide'}">
+      <li class="work ${w.short ? 'is-short is-fit' : 'is-wide'}">
         <button type="button" class="work__btn" data-index="${i}" aria-label="${esc(w.title)} 영상 보기">
           <div class="work__media">
             ${thumb}
             <div class="hud" aria-hidden="true">
               <span class="hud__tl"><b>V1</b>Clip ${no}</span>
               <span class="hud__tr">${w.short ? '9:16' : '16:9'}</span>
-              <span class="hud__bl">${tc(i * 37.5 + 12.2)}</span>
               <span class="hud__safe"></span>
               <span class="hud__bar"><i></i></span>
             </div>
@@ -87,186 +97,76 @@
             <span class="work__no">${no}</span>
             <h3 class="work__title">${esc(w.title)}</h3>
             <span class="work__cat">${esc(w.category)} — ${esc(w.year)}</span>
-            ${w.role ? `<span class="work__role">${esc(w.role)}</span>` : ''}
           </div>
         </button>
       </li>`;
   }
   function artCard(a, i) {
     const no = pad(i + 1);
-    // frame: "square"(기본, 꽉 채움) / "wide"(16:9 안에 전체가 보이게) / "tall"(9:16 안에 전체가 보이게)
-    const frame = a.frame || 'square';
-    const cls = frame === 'wide' ? 'is-wide is-fit' : frame === 'tall' ? 'is-short is-fit' : 'is-square';
+    // frame: "wide"·"tall" 은 전체가 보이게, 비우면(정사각 일러스트) 꽉 채움
+    const fit = a.frame === 'wide' || a.frame === 'tall';
     const media = `
           <div class="work__media">
-            <img src="${esc(a.img)}" alt="" loading="lazy" draggable="false">
+            ${fit ? fitMedia(a.img) : `<img src="${esc(a.img)}" alt="" loading="lazy" draggable="false">`}
             <div class="hud" aria-hidden="true">
               <span class="hud__tl"><b>G1</b>Still ${no}</span>
-              <span class="hud__tr">${a.url ? 'Link' : 'View'}</span>
+              <span class="hud__tr">${a.url ? 'Link ↗' : 'View'}</span>
               <span class="hud__safe"></span>
             </div>
           </div>
           <div class="work__meta">
             <span class="work__no">${no}</span>
             <h3 class="work__title">${esc(a.title)}</h3>
-            <span class="work__cat">${esc(a.category || 'Illustration')}${a.url ? ' ↗' : ''}</span>
+            <span class="work__cat">${esc(a.category || 'Illustration')}</span>
           </div>`;
+    const cls = `work is-art${fit ? ' is-fit' : ''}`;
     return a.url
-      ? `<li class="work is-art ${cls}"><a class="work__btn" href="${esc(a.url)}" target="_blank" rel="noopener" draggable="false" aria-label="${esc(a.title)} 보러 가기">${media}</a></li>`
-      : `<li class="work is-art ${cls}"><button type="button" class="work__btn" data-lb="${esc(a.img)}" aria-label="${esc(a.title)} 크게 보기">${media}</button></li>`;
+      ? `<li class="${cls}"><a class="work__btn" href="${esc(a.url)}" target="_blank" rel="noopener" draggable="false" aria-label="${esc(a.title)} 보러 가기">${media}</a></li>`
+      : `<li class="${cls}"><button type="button" class="work__btn" data-lb="${esc(a.img)}" aria-label="${esc(a.title)} 크게 보기">${media}</button></li>`;
   }
-  function renderTrack() {
+  function renderGrid() {
     const list = kind === 'video' ? works : art;
-    track.innerHTML = list.map(kind === 'video' ? videoCard : artCard).join('');
-    cards = $$('.work', track);
-    $('#total').textContent = pad(list.length);
+    const items = list.slice(0, shown);
+    grid.className = `wgrid is-${kind}`;
+    grid.innerHTML = items.map(kind === 'video' ? videoCard : artCard).join('');
+    const left = list.length - items.length;
+    moreBtn.hidden = left <= 0;
+    moreBtn.innerHTML = `More <span>+${Math.min(PAGE, left)}</span><small>남은 작업물 ${left}개</small>`;
+    $$('.work', grid).forEach((el, i) => setTimeout(() => el.classList.add('is-in'), 30 * (i % PAGE)));
     const c = $('#cursor');
     if (c) c.textContent = kind === 'video' ? 'Play' : 'View';
   }
-  renderTrack();
+  renderGrid();
+  moreBtn.addEventListener('click', () => { shown += PAGE; renderGrid(); });
   $$('.works__tab').forEach((t) => {
     const n = $('.works__count', t);
     if (n) n.textContent = pad(t.dataset.set === 'video' ? works.length : art.length);
     t.addEventListener('click', () => {
       if (t.dataset.set === kind) return;
       kind = t.dataset.set;
+      shown = PAGE;
       $$('.works__tab').forEach((x) => { x.classList.toggle('is-on', x === t); x.setAttribute('aria-selected', x === t); });
-      stopAnim();
-      renderTrack();
-      track.scrollLeft = 0;
-      measure(); updateSlider();
-      requestAnimationFrame(() => { measure(); updateSlider(); });
-      setTimeout(() => { measure(); updateSlider(); }, 300);
+      renderGrid();
     });
   });
 
-  const bar = $('#bar'), cur = $('#cur'), prev = $('#prev'), next = $('#next');
-
-  // 카드 위치는 미리 계산해 두고(리사이즈 때만 갱신) 스크롤 중에는 레이아웃을 읽지 않음
-  let stops = [], maxScroll = 0;
-  function measure() {
-    const base = cards[0] ? cards[0].offsetLeft : 0;
-    maxScroll = track.scrollWidth - track.clientWidth;
-    stops = cards.map((c) => Math.min(c.offsetLeft - base, maxScroll));
-  }
-  function nearest(x) {
-    let best = 0, d = Infinity;
-    stops.forEach((s, i) => { const dd = Math.abs(s - x); if (dd < d) { d = dd; best = i; } });
-    return best;
-  }
-  function currentIndex() {
-    if (track.scrollLeft >= maxScroll - 4) return cards.length - 1;
-    return nearest(track.scrollLeft);
-  }
-
-  // 부드러운 이동 (rAF + ease-out). 이동 중에는 CSS 스냅을 꺼서 브라우저 스냅과 충돌하지 않게 함
-  let anim = 0;
-  const easeOut = (t) => 1 - Math.pow(1 - t, 4);
-  function stopAnim() { if (anim) { cancelAnimationFrame(anim); anim = 0; } }
-  function animateTo(target, duration = 650) {
-    stopAnim();
-    target = Math.max(0, Math.min(target, maxScroll));
-    const from = track.scrollLeft, dist = target - from;
-    if (Math.abs(dist) < 1) { track.classList.remove('is-free'); return; }
-    track.classList.add('is-free');
-    const t0 = performance.now();
-    const step = (now) => {
-      const t = Math.min((now - t0) / duration, 1);
-      track.scrollLeft = from + dist * easeOut(t);
-      if (t < 1) anim = requestAnimationFrame(step);
-      else { anim = 0; track.classList.remove('is-free'); }
-    };
-    anim = requestAnimationFrame(step);
-  }
-  function goTo(i) {
-    measure();
-    const k = Math.max(0, Math.min(i, cards.length - 1));
-    animateTo(stops[k], 700);
-  }
-
-  let rafUI = 0;
-  function updateSlider() {
-    rafUI = 0;
-    if (!cards.length) return;
-    const p = maxScroll > 0 ? track.scrollLeft / maxScroll : 1;
-    bar.style.clipPath = `inset(0 ${(100 - Math.max(p, 1 / cards.length) * 100).toFixed(2)}% 0 0)`;
-    cur.textContent = pad(currentIndex() + 1);
-    prev.disabled = track.scrollLeft <= 2;
-    next.disabled = track.scrollLeft >= maxScroll - 2;
-  }
-  track.addEventListener('scroll', () => { if (!rafUI) rafUI = requestAnimationFrame(updateSlider); }, { passive: true });
-  prev.addEventListener('click', () => goTo(currentIndex() - 1));
-  next.addEventListener('click', () => goTo(currentIndex() + 1));
-
-  // 마우스 드래그: 손 따라 움직이고, 놓으면 속도만큼 미끄러진 뒤 가장 가까운 카드에 안착
-  let down = false, moved = false, startX = 0, startL = 0, samples = [], pending = null, rafDrag = 0;
-  track.addEventListener('pointerdown', (e) => {
-    if (e.pointerType !== 'mouse' || e.button !== 0) return;
-    stopAnim();
-    down = true; moved = false;
-    startX = e.clientX; startL = track.scrollLeft;
-    samples = [{ x: e.clientX, t: e.timeStamp }];
-  });
-  window.addEventListener('pointermove', (e) => {
-    if (!down) return;
-    const dx = e.clientX - startX;
-    if (!moved && Math.abs(dx) > 5) {
-      moved = true;
-      track.classList.add('is-free', 'is-dragging');
-      $('#cursor').classList.remove('is-on');
-    }
-    if (!moved) return;
-    samples.push({ x: e.clientX, t: e.timeStamp });
-    if (samples.length > 6) samples.shift();
-    pending = startL - dx;
-    if (!rafDrag) rafDrag = requestAnimationFrame(() => {
-      rafDrag = 0;
-      if (pending !== null) track.scrollLeft = Math.max(0, Math.min(pending, maxScroll));
-    });
-  });
-  window.addEventListener('pointerup', (e) => {
-    if (!down) return;
-    down = false;
-    if (!moved) return;
-    track.classList.remove('is-dragging');
-    // 최근 움직임으로 속도(px/ms) 계산
-    const now = e.timeStamp;
-    const recent = samples.filter((s) => now - s.t < 120);
-    let v = 0;
-    if (recent.length > 1) {
-      const a = recent[0], b = recent[recent.length - 1];
-      v = (b.x - a.x) / Math.max(b.t - a.t, 1);
-    }
-    const projected = track.scrollLeft - v * 320;          // 관성으로 더 미끄러질 거리
-    let i = nearest(projected);
-    const here = currentIndex();
-    if (Math.abs(v) > 0.35 && i === here) i = here + (v < 0 ? 1 : -1); // 짧게 휙 넘겨도 한 장 이동
-    i = Math.max(0, Math.min(i, cards.length - 1));
-    const dist = Math.abs(stops[i] - track.scrollLeft);
-    animateTo(stops[i], Math.min(900, 420 + dist * 0.5));
-    setTimeout(() => { moved = false; }, 0);
-  });
-
-  track.addEventListener('click', (e) => {
+  grid.addEventListener('click', (e) => {
     const btn = e.target.closest('.work__btn');
-    if (!btn || moved) { e.preventDefault(); e.stopPropagation(); return; }
-    if (btn.tagName === 'A' || btn.dataset.lb) return;   // 이미지 카드: 링크 이동 또는 크게 보기
+    if (!btn || btn.tagName === 'A' || btn.dataset.lb) return;   // 이미지: 링크 이동 또는 크게 보기
     openModal(+btn.dataset.index);
-  }, true);
+  });
 
-  measure();
-  window.addEventListener('resize', () => { measure(); updateSlider(); });
-
-  // 썸네일 위 PLAY 커서
+  // 섬네일 위 커서 (Play / View)
   const cursor = $('#cursor');
   if (matchMedia('(pointer: fine)').matches) {
-    track.addEventListener('pointermove', (e) => {
-      const on = !!e.target.closest('.work__media') && !moved && !down;
-      cursor.classList.toggle('is-on', on);
+    grid.addEventListener('pointermove', (e) => {
+      cursor.classList.toggle('is-on', !!e.target.closest('.work__media'));
       cursor.style.transform = `translate3d(${e.clientX + 14}px, ${e.clientY + 14}px, 0)`;
     });
-    track.addEventListener('pointerleave', () => cursor.classList.remove('is-on'));
+    grid.addEventListener('pointerleave', () => cursor.classList.remove('is-on'));
   }
+  function measure() {}
+  function updateSlider() {}
 
   /* ---------- 영상 팝업 ---------- */
   const modal = $('#modal');
