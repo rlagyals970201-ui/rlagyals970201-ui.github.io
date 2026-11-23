@@ -917,3 +917,13 @@ body.is-locked { overflow: hidden; }
 
 /* 16:9가 아닌 작업 이미지(세로 카드뉴스·명함 등)는 잘리지 않게 */
 .shot img.is-contain { object-fit: contain; background: #e9e9e6; }
+
+/* Tools: 마우스를 올리면 어도비 앱 고유 색으로 */
+.cap .tool.is-pr { --app-bg: #2a0634; --app-fg: #ea77ff; }
+.cap .tool.is-ae { --app-bg: #00005b; --app-fg: #9999ff; }
+.cap .tool.is-ps { --app-bg: #001e36; --app-fg: #31a8ff; }
+.cap .tool.is-ai { --app-bg: #330000; --app-fg: #ff9a00; }
+.cap .tool:is(.is-pr, .is-ae, .is-ps, .is-ai):hover { background: var(--app-bg); color: var(--app-fg); }
+.cap .tool:is(.is-pr, .is-ae, .is-ps, .is-ai):hover .tool__ab,
+.cap .tool:is(.is-pr, .is-ae, .is-ps, .is-ai):hover .tool__use { color: var(--app-fg); }
+.cap .tool:is(.is-pr, .is-ae, .is-ps, .is-ai):hover .tool__name { color: #fff; }
