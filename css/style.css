@@ -914,3 +914,6 @@ body.is-locked { overflow: hidden; }
 
 /* About: 복수전공 */
 .spec__sub { display: block; margin: 2px 0 8px; font-size: 12px; font-weight: 500; color: var(--muted); }
+
+/* 16:9가 아닌 작업 이미지(세로 카드뉴스·명함 등)는 잘리지 않게 */
+.shot img.is-contain { object-fit: contain; background: #e9e9e6; }

@@ -14,7 +14,7 @@
     if (!gal) return;
     if (!imgs.length) { gal.remove(); return; }
     const html = imgs.map((src, i) => `<li><button type="button" class="shot" data-lb="${esc(src)}" aria-label="이미지 ${pad(i + 1)} 크게 보기">
-             <img src="${esc(src)}" alt="" loading="lazy"><span class="shot__no">IMG ${pad(i + 1)}</span></button></li>`).join('');
+             <img src="${esc(src)}" alt="" loading="lazy" onload="if (Math.abs(this.naturalWidth / this.naturalHeight - 16 / 9) > .2) this.classList.add('is-contain')"><span class="shot__no">IMG ${pad(i + 1)}</span></button></li>`).join('');
     gal.innerHTML = `<div class="cap__gal-in"><ul class="cap__shots" style="--n:${Math.min(imgs.length, 5)}">${html}</ul></div>`;
     item.classList.add('is-open', 'has-shots');
   });

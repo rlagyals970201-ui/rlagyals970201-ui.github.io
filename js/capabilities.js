@@ -22,6 +22,11 @@ window.CAP_IMAGES = {
     "assets/img/cap/02-4.jpg",   // 연세더바로병원 현장 인터뷰 촬영
   ],
   "03": [   // Thumbnail & Design (디자인)
+    "assets/img/cap/03-1.jpg",   // 프랫폴 합방 썸네일
+    "assets/img/cap/03-2.jpg",   // 조윤주 변호사 — 노키즈존 썸네일
+    "assets/img/cap/03-3.jpg",   // 보험톡톡 설계사 모집 배너
+    "assets/img/cap/03-4.jpg",   // 법률사무소 다연 명함
+    "assets/img/cap/03-5.jpg",   // 미디어데일리 카드뉴스
   ],
   "04": [   // Marketing & Channel (마케팅·채널 운영)
   ],
