@@ -29,6 +29,11 @@ window.CAP_IMAGES = {
     "assets/img/cap/03-5.jpg",   // 미디어데일리 카드뉴스
   ],
   "04": [   // Marketing & Channel (마케팅·채널 운영)
+    "assets/img/cap/04-1.jpg",   // 네이버 검색광고 캠페인 관리
+    "assets/img/cap/04-2.jpg",   // 한국보험보상TV 유튜브 채널 운영
+    "assets/img/cap/04-3.jpg",   // 미디어데일리 인스타그램 운영
+    "assets/img/cap/04-4.jpg",   // 법률사무소 다연·한국보험보상센터 블로그
+    "assets/img/cap/04-5.jpg",   // 미디어데일리 홈페이지 운영
   ],
   "05": [   // AI Workflow
   ]
